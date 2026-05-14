@@ -158,6 +158,7 @@
     .logo-fallback .lf-text p{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05rem;line-height:1;letter-spacing:-.01em;}
     .logo-fallback .lf-text .l1{color:#fff;}
     .logo-fallback .lf-text .l2{color:#E60000;}
+    [data-theme="light"] .logo-fallback .lf-text .l1{color:#080808;}
 
     /* ══════════════════════════════
        THEME TOGGLE
@@ -272,15 +273,6 @@
     .product-card:hover .product-img-wrap img{transform:scale(1.08);}
     .product-card:hover .product-img-wrap::after{opacity:1;}
 
-    /* seal card */
-    .seal-card{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);border-top:1px solid rgba(255,255,255,.15);
-      border-radius:20px;padding:24px 28px;display:flex;align-items:center;gap:16px;
-      transition:background .3s,border-color .3s,transform .3s;
-    }
-    .seal-card:hover{background:rgba(255,255,255,.07);border-color:rgba(200,168,75,.28);transform:translateY(-3px);}
-
     /* avcb point */
     .avcb-pt{
       display:flex;align-items:flex-start;gap:14px;padding:20px;
@@ -310,7 +302,7 @@
     .valor-chip .vdot{width:6px;height:6px;border-radius:50%;background:#E60000;flex-shrink:0;}
 
     /* ══════════════════════════════
-       BENTO GRID
+       BENTO GRID REFACTOR (Diferenciais)
     ══════════════════════════════ */
     .bento-svc{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;}
     .bs-1{grid-column:span 12;}
@@ -318,8 +310,14 @@
 
     .bento-diff{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;}
     .bd-1{grid-column:span 12;}
+    .bd-cta{grid-column:span 12;}
+    .bd-seals{grid-column:span 12;}
+    .bd-phone{grid-column:span 12;}
     @media(min-width:768px){
-      .bd-1{grid-column:span 8;}.bd-2,.bd-3,.bd-4{grid-column:span 4;}.bd-5{grid-column:span 6;}.bd-6{grid-column:span 6;}
+      .bd-1{grid-column:span 8;}
+      .bd-cta{grid-column:span 4;}
+      .bd-seals{grid-column:span 8;}
+      .bd-phone{grid-column:span 4;}
     }
 
     /* ══════════════════════════════
@@ -331,7 +329,6 @@
     .stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,5vw,4rem);color:#E60000;line-height:1;letter-spacing:-.02em;}
     .hover-arrow{display:inline-flex;align-items:center;gap:6px;font-size:.8125rem;font-weight:600;color:#E60000;transition:gap .2s;text-decoration:none;}
     .hover-arrow:hover{gap:10px;}
-    .red-rule{width:36px;height:2.5px;background:#E60000;border-radius:2px;}
 
     /* ══════════════════════════════
        ACCORDION
@@ -397,28 +394,22 @@
 </head>
 <body class="antialiased">
 
-<!-- ════════════════════════════════════
-     HEADER
-════════════════════════════════════ -->
 <header id="header" class="fixed top-0 left-0 right-0 z-50 py-3.5">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between gap-4">
 
-    <!-- LOGO -->
-    <a href="#home" class="flex items-center gap-3 flex-shrink-0">
+    <a href="#home" class="flex items-center gap-3 flex-shrink-0" style="background:rgba(255,255,255,0.9); padding:6px 12px; border-radius:12px;">
       <img src="logo.png" alt="Tudo em Incêndio"
-           style="height:44px;width:auto;display:block;"
-           onload="this.style.display='block';this.nextElementSibling.style.display='none';"
+           style="height:36px;width:auto;display:block;"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
       <div class="logo-fallback">
         <div class="lf-icon"><i class="fa-solid fa-fire-extinguisher text-white" style="font-size:1.1rem;"></i></div>
         <div class="lf-text">
-          <p class="l1">TUDO EM</p>
+          <p class="l1" style="color:#080808;">TUDO EM</p>
           <p class="l2">INCÊNDIO</p>
         </div>
       </div>
     </a>
 
-    <!-- NAV DESKTOP -->
     <nav class="hidden md:flex items-center gap-7">
       <a href="#home"     class="nav-lnk">Home</a>
       <a href="#servicos" class="nav-lnk">Serviços</a>
@@ -427,23 +418,18 @@
       <a href="#contato"  class="nav-lnk">Contato</a>
     </nav>
 
-    <!-- RIGHT ACTIONS -->
     <div class="flex items-center gap-2.5">
-      <!-- Instagram -->
       <a href="https://www.instagram.com/tudoemincendio/" target="_blank" rel="noopener" aria-label="Instagram"
          class="hidden sm:flex w-9 h-9 rounded-xl items-center justify-center text-white/60 hover:text-white transition-colors"
          style="border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);">
         <i class="fa-brands fa-instagram" style="font-size:1rem;"></i>
       </a>
-      <!-- Theme toggle -->
       <button id="theme-toggle" aria-label="Alternar tema">
         <i class="fa-solid fa-moon" id="theme-icon"></i>
       </button>
-      <!-- CTA -->
       <a href="https://wa.me/5531991353168" target="_blank" rel="noopener" class="btn-fire hidden sm:inline-flex" style="padding:10px 18px;font-size:.8125rem;">
         <i class="fa-brands fa-whatsapp" style="font-size:.95rem;"></i> Falar Agora
       </a>
-      <!-- Hamburger -->
       <button id="hamburger" class="md:hidden w-9 h-9 rounded-xl flex items-center justify-center text-white/70"
               style="border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);" aria-label="Menu">
         <i class="fa-solid fa-bars" style="font-size:.95rem;"></i>
@@ -451,7 +437,6 @@
     </div>
   </div>
 
-  <!-- MOBILE MENU -->
   <div id="mobile-menu" style="background:rgba(7,7,10,0.97);border-top:1px solid rgba(255,255,255,.06);" class="md:hidden mt-3">
     <nav class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-0.5">
       <a href="#home"     class="nav-lnk py-3 border-b" style="border-color:rgba(255,255,255,.05);display:block;">Home</a>
@@ -466,9 +451,6 @@
   </div>
 </header>
 
-<!-- ════════════════════════════════════
-     HERO
-════════════════════════════════════ -->
 <section id="home" class="hero-mesh relative min-h-screen flex items-center pt-24 pb-28 overflow-hidden">
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
@@ -497,29 +479,11 @@
           <i class="fa-solid fa-shield-halved" style="font-size:.875rem;"></i> Nossos Serviços
         </a>
       </div>
-      <!-- Seals -->
-      <div class="flex flex-wrap gap-2.5">
-        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;">
-          <i class="fa-solid fa-certificate" style="color:#C8A84B;font-size:.875rem;"></i>
-          <span style="color:rgba(255,255,255,.55);font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;">INMETRO</span>
-        </div>
-        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;">
-          <i class="fa-solid fa-award" style="color:#C8A84B;font-size:.875rem;"></i>
-          <span style="color:rgba(255,255,255,.55);font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;">CREA</span>
-        </div>
-        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;">
-          <i class="fa-solid fa-fire-flame-curved" style="color:#C8A84B;font-size:.875rem;"></i>
-          <span style="color:rgba(255,255,255,.55);font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;">CBMMG</span>
-        </div>
-      </div>
     </div>
   </div>
   <div class="diagonal-cut"></div>
 </section>
 
-<!-- ════════════════════════════════════
-     STATS
-════════════════════════════════════ -->
 <section class="page-section py-14" style="border-bottom:1px solid var(--border-card);">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -531,9 +495,6 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     SERVIÇOS — BENTO GRID
-════════════════════════════════════ -->
 <section id="servicos" class="page-section py-24">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="mb-14 reveal">
@@ -542,7 +503,6 @@
       <p style="color:var(--text-muted);font-size:1.0625rem;margin-top:14px;max-width:500px;line-height:1.7;">Soluções completas em segurança contra incêndio — do projeto à regularização.</p>
     </div>
     <div class="bento-svc reveal">
-      <!-- AVCB -->
       <div class="bs-1 bento-card" style="min-height:260px;display:flex;flex-direction:column;justify-content:space-between;">
         <span class="num-ghost">01</span>
         <div>
@@ -552,7 +512,6 @@
         </div>
         <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+Projetos+AVCB." target="_blank" rel="noopener" class="hover-arrow" style="margin-top:22px;">Solicitar Projeto <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i></a>
       </div>
-      <!-- Manutenção -->
       <div class="bs-2 bento-card" style="min-height:260px;display:flex;flex-direction:column;justify-content:space-between;">
         <span class="num-ghost">02</span>
         <div>
@@ -562,7 +521,6 @@
         </div>
         <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+Manuten%C3%A7%C3%A3o." target="_blank" rel="noopener" class="hover-arrow" style="margin-top:22px;">Saiba mais <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i></a>
       </div>
-      <!-- Instalação -->
       <div class="bs-3 bento-card" style="min-height:240px;display:flex;flex-direction:column;justify-content:space-between;">
         <span class="num-ghost">03</span>
         <div>
@@ -572,7 +530,6 @@
         </div>
         <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+Instala%C3%A7%C3%A3o." target="_blank" rel="noopener" class="hover-arrow" style="margin-top:22px;">Saiba mais <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i></a>
       </div>
-      <!-- Tintura -->
       <div class="bs-4 bento-card" style="min-height:240px;display:flex;flex-direction:column;justify-content:space-between;">
         <span class="num-ghost">04</span>
         <div>
@@ -586,9 +543,6 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     AVCB — CONVERSÃO
-════════════════════════════════════ -->
 <section class="dark-section py-24 overflow-hidden relative">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 50% 50%,rgba(230,0,0,0.09) 0%,transparent 70%);pointer-events:none;"></div>
   <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
@@ -620,13 +574,9 @@
   @media(min-width:1024px){#avcb-grid{grid-template-columns:repeat(3,1fr)!important;}}
 </style>
 
-<!-- ════════════════════════════════════
-     QUEM SOMOS + VALORES
-════════════════════════════════════ -->
 <section id="sobre" class="page-section overflow-hidden">
   <div class="max-w-7xl mx-auto">
     <div style="display:grid;grid-template-columns:1fr;" id="sobre-grid">
-      <!-- Foto -->
       <div style="position:relative;overflow:hidden;min-height:380px;">
         <img src="fachada.png" alt="Fachada Tudo em Incêndio — Tupi, BH"
              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;" />
@@ -636,13 +586,11 @@
           <span style="color:#fff;font-size:.75rem;font-weight:500;">Tupi — Belo Horizonte, MG</span>
         </div>
       </div>
-      <!-- Texto -->
       <div style="display:flex;flex-direction:column;justify-content:center;padding:56px 40px;" class="reveal">
         <p class="sec-eye" style="margin-bottom:10px;">Nossa Estrutura</p>
         <h2 class="sec-h2" style="margin-bottom:18px;">Sua Segurança<br><span class="gradient-text">É Nossa Missão</span></h2>
         <p style="color:var(--text-muted);line-height:1.75;margin-bottom:14px;font-size:.9375rem;">Nossa sede no bairro Tupi conta com estoque completo de equipamentos homologados e equipe técnica pronta para atender projetos de todos os portes.</p>
         <p style="color:var(--text-muted);line-height:1.75;margin-bottom:28px;font-size:.9375rem;">Desde extintores até sistemas completos de hidrantes e sinalização, você encontra tudo em um só lugar com suporte técnico especializado.</p>
-        <!-- Valores -->
         <div style="margin-bottom:24px;">
           <p style="font-size:.7rem;font-weight:600;color:var(--text-muted2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;">Nossos Valores</p>
           <div style="display:flex;flex-wrap:wrap;gap:8px;">
@@ -653,7 +601,6 @@
             <span class="valor-chip"><span class="vdot"></span>Inovação</span>
           </div>
         </div>
-        <!-- Chips -->
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;">
           <div style="display:inline-flex;align-items:center;gap:7px;padding:7px 15px;background:var(--bg-mid);border:1px solid var(--border-card);border-radius:100px;font-size:.8125rem;font-weight:500;color:var(--text-main);">
             <i class="fa-solid fa-boxes-stacked" style="color:#E60000;font-size:.7rem;"></i> Estoque Completo
@@ -679,12 +626,8 @@
 </section>
 <style>
   @media(min-width:1024px){#sobre-grid{grid-template-columns:1fr 1fr!important;min-height:580px;}}
-  @media(min-width:1024px){#sobre-grid > div:first-child .fade-r{display:block!important;}}
 </style>
 
-<!-- ════════════════════════════════════
-     PRODUTOS
-════════════════════════════════════ -->
 <section id="produtos" class="mid-section py-24">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="text-center mb-14 reveal">
@@ -693,7 +636,6 @@
       <p style="color:var(--text-muted);font-size:1.0625rem;margin-top:14px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7;">Equipamentos certificados e homologados para proteção total do seu patrimônio.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(1,1fr);gap:18px;" id="prod-grid">
-      <!-- Extintor -->
       <div class="product-card reveal">
         <div class="product-img-wrap" style="height:210px;"><img src="extintor.png" alt="Extintores de Incêndio" /></div>
         <div style="padding:22px;position:relative;z-index:1;">
@@ -705,7 +647,6 @@
           </a>
         </div>
       </div>
-      <!-- Abrigo -->
       <div class="product-card reveal" style="transition-delay:.07s">
         <div class="product-img-wrap" style="height:210px;"><img src="abrigo.png" alt="Abrigo de Hidrante" /></div>
         <div style="padding:22px;position:relative;z-index:1;">
@@ -717,7 +658,6 @@
           </a>
         </div>
       </div>
-      <!-- Mangueira -->
       <div class="product-card reveal" style="transition-delay:.14s">
         <div class="product-img-wrap" style="height:210px;"><img src="mangueira.png" alt="Mangueiras de Incêndio" /></div>
         <div style="padding:22px;position:relative;z-index:1;">
@@ -729,7 +669,6 @@
           </a>
         </div>
       </div>
-      <!-- Esguichos -->
       <div class="product-card reveal" style="transition-delay:.04s">
         <div class="product-img-wrap" style="height:210px;"><img src="esguichos.png" alt="Esguichos" /></div>
         <div style="padding:22px;position:relative;z-index:1;">
@@ -741,7 +680,6 @@
           </a>
         </div>
       </div>
-      <!-- Storz -->
       <div class="product-card reveal" style="transition-delay:.11s">
         <div class="product-img-wrap" style="height:210px;"><img src="storz.png" alt="Chave Storz e Adaptadores" /></div>
         <div style="padding:22px;position:relative;z-index:1;">
@@ -753,7 +691,6 @@
           </a>
         </div>
       </div>
-      <!-- Placas -->
       <div class="product-card reveal" style="transition-delay:.18s">
         <div class="product-img-wrap" style="height:210px;"><img src="placas.png" alt="Placas de Sinalização de Emergência" /></div>
         <div style="padding:22px;position:relative;z-index:1;">
@@ -773,9 +710,6 @@
   @media(min-width:1024px){#prod-grid{grid-template-columns:repeat(3,1fr)!important;}}
 </style>
 
-<!-- ════════════════════════════════════
-     TIPOS DE EXTINTOR — ACCORDION
-════════════════════════════════════ -->
 <section class="page-section py-20">
   <div class="max-w-5xl mx-auto px-5 sm:px-8">
     <div style="display:grid;grid-template-columns:1fr;gap:48px;align-items:start;" id="acc-grid">
@@ -844,9 +778,6 @@
 </section>
 <style>@media(min-width:768px){#acc-grid{grid-template-columns:1fr 1fr!important;}}</style>
 
-<!-- ════════════════════════════════════
-     DIFERENCIAIS — BENTO DARK
-════════════════════════════════════ -->
 <section class="dark-section py-24 overflow-hidden">
   <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 50% at 80% 50%,rgba(230,0,0,0.07) 0%,transparent 65%);"></div>
   <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
@@ -855,7 +786,7 @@
       <h2 class="sec-h2-w">Por que escolher a<br><span class="gradient-text">Tudo em Incêndio?</span></h2>
     </div>
     <div class="bento-diff reveal">
-      <!-- Texto principal -->
+      
       <div class="bd-1 bento-dark" style="padding:36px 40px;">
         <p style="color:rgba(255,255,255,.35);font-size:.9375rem;line-height:1.75;max-width:420px;margin-bottom:30px;">Empresa com DNA técnico e comprometimento total com a segurança dos clientes. Trabalhamos com os melhores produtos do mercado.</p>
         <div style="display:flex;flex-direction:column;gap:18px;">
@@ -865,21 +796,36 @@
           <div style="display:flex;align-items:flex-start;gap:12px;"><div style="width:30px;height:30px;border-radius:50%;background:rgba(230,0,0,0.12);border:1px solid rgba(230,0,0,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><i class="fa-solid fa-check" style="color:#E60000;font-size:.65rem;"></i></div><div><p style="color:#fff;font-weight:600;font-size:.875rem;margin-bottom:3px;">Aprovação Garantida no CBMMG</p><p style="color:rgba(255,255,255,.38);font-size:.8125rem;line-height:1.6;">Vasta experiência em aprovações junto ao Corpo de Bombeiros de MG.</p></div></div>
         </div>
       </div>
-      <!-- Selos -->
-      <div class="bd-2 seal-card"><div style="width:56px;height:56px;background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-certificate" style="color:#C8A84B;font-size:1.5rem;"></i></div><div><h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#fff;letter-spacing:-.01em;">INMETRO</h4><p style="color:rgba(255,255,255,.35);font-size:.8125rem;margin-top:4px;line-height:1.5;">Certificação do Instituto Nacional de Metrologia.</p></div></div>
-      <div class="bd-3 seal-card"><div style="width:56px;height:56px;background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-award" style="color:#C8A84B;font-size:1.5rem;"></i></div><div><h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#fff;letter-spacing:-.01em;">CREA-MG</h4><p style="color:rgba(255,255,255,.35);font-size:.8125rem;margin-top:4px;line-height:1.5;">Profissional registrado no Conselho Regional de Engenharia.</p></div></div>
-      <div class="bd-4 seal-card"><div style="width:56px;height:56px;background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-fire-flame-curved" style="color:#C8A84B;font-size:1.5rem;"></i></div><div><h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#fff;letter-spacing:-.01em;">CBMMG</h4><p style="color:rgba(255,255,255,.35);font-size:.8125rem;margin-top:4px;line-height:1.5;">Credenciados no Corpo de Bombeiros Militar de MG.</p></div></div>
-      <!-- CTA card -->
-      <div class="bd-5" style="background:linear-gradient(135deg,#E60000 0%,#B50000 100%);border-radius:20px;padding:28px 30px;display:flex;flex-direction:column;justify-content:space-between;min-height:160px;">
-        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.6rem;color:#fff;line-height:1.05;letter-spacing:-.01em;">Orçamento rápido e sem compromisso?</p>
+      
+      <div class="bd-cta" style="background:linear-gradient(135deg,#E60000 0%,#B50000 100%);border-radius:20px;padding:28px 30px;display:flex;flex-direction:column;justify-content:center;gap:18px;min-height:160px;">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.8rem;color:#fff;line-height:1.05;letter-spacing:-.01em;">Orçamento rápido e sem compromisso?</p>
         <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento." target="_blank" rel="noopener"
-           style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;background:#fff;color:#E60000;font-weight:600;font-size:.8125rem;padding:11px 20px;border-radius:100px;width:fit-content;transition:transform .2s,box-shadow .2s;text-decoration:none;"
+           style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#E60000;font-weight:600;font-size:.8125rem;padding:11px 20px;border-radius:100px;width:fit-content;transition:transform .2s,box-shadow .2s;text-decoration:none;"
            onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.2)'"
            onmouseout="this.style.transform='';this.style.boxShadow=''">
           <i class="fa-brands fa-whatsapp" style="font-size:1rem;color:#25D366;"></i> Solicitar Agora
         </a>
       </div>
-      <div class="bd-6" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:28px 30px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px;">
+
+      <div class="bd-seals bento-dark" style="display:flex; flex-direction:column; justify-content:center; padding:32px 40px;">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#fff;letter-spacing:-.01em;margin-bottom:24px;">Nossas Certificações</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:48px;height:48px;background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.18);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-certificate" style="color:#C8A84B;font-size:1.2rem;"></i></div>
+            <div><h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#fff;letter-spacing:-.01em;">INMETRO</h4><p style="color:rgba(255,255,255,.35);font-size:.75rem;line-height:1.4;">Instituto Nacional de Metrologia</p></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:48px;height:48px;background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.18);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-award" style="color:#C8A84B;font-size:1.2rem;"></i></div>
+            <div><h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#fff;letter-spacing:-.01em;">CREA-MG</h4><p style="color:rgba(255,255,255,.35);font-size:.75rem;line-height:1.4;">Conselho Regional de Engenharia</p></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:48px;height:48px;background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.18);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-fire-flame-curved" style="color:#C8A84B;font-size:1.2rem;"></i></div>
+            <div><h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#fff;letter-spacing:-.01em;">CBMMG</h4><p style="color:rgba(255,255,255,.35);font-size:.75rem;line-height:1.4;">Bombeiros Militar de Minas Gerais</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bd-phone" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:28px 30px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px;">
         <i class="fa-solid fa-phone-volume" style="color:#E60000;font-size:1.6rem;"></i>
         <div>
           <p style="color:#fff;font-weight:600;font-size:.9375rem;margin-bottom:6px;">Prefere ligar?</p>
@@ -887,13 +833,11 @@
           <p style="color:rgba(255,255,255,.3);font-size:.75rem;margin-top:4px;">Seg–Sex · Comercial</p>
         </div>
       </div>
+      
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     CONTATO
-════════════════════════════════════ -->
 <section id="contato" class="page-section py-24">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="text-center reveal" style="margin-bottom:48px;">
@@ -939,23 +883,23 @@
   @media(min-width:640px){#contact-grid{grid-template-columns:repeat(3,1fr)!important;}}
 </style>
 
-<!-- ════════════════════════════════════
-     FOOTER
-════════════════════════════════════ -->
 <footer style="background:var(--footer-bg);padding-top:56px;padding-bottom:28px;">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div style="display:grid;grid-template-columns:1fr;gap:36px;margin-bottom:44px;" id="ftr-grid">
-      <!-- Sobre -->
       <div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-          <div style="width:34px;height:34px;background:#E60000;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-fire-extinguisher" style="color:#fff;font-size:.9rem;"></i></div>
-          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;color:#fff;letter-spacing:-.01em;">TUDO EM INCÊNDIO</p>
+        <div style="margin-bottom:16px; display:inline-block; background:#fff; padding:8px 16px; border-radius:12px;">
+          <img src="logo.png" alt="Tudo em Incêndio" style="height:40px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="logo-fallback" style="display:none;align-items:center;gap:10px;">
+            <div class="lf-icon"><i class="fa-solid fa-fire-extinguisher" style="color:#fff;font-size:1.1rem;"></i></div>
+            <div class="lf-text">
+              <p class="l1" style="color:#080808;">TUDO EM</p>
+              <p class="l2" style="color:#E60000;">INCÊNDIO</p>
+            </div>
+          </div>
         </div>
-        <div style="width:30px;height:2px;background:#E60000;border-radius:1px;margin-bottom:14px;"></div>
         <p style="color:rgba(255,255,255,.3);font-size:.8125rem;line-height:1.75;margin-bottom:8px;"><span style="color:rgba(255,255,255,.5);font-weight:500;">Missão:</span> Prover soluções completas em segurança contra incêndios, garantindo a proteção e tranquilidade dos clientes.</p>
         <p style="color:rgba(255,255,255,.3);font-size:.8125rem;line-height:1.75;"><span style="color:rgba(255,255,255,.5);font-weight:500;">Visão:</span> Ser líder em MG, destacando-se pela excelência, inovação e comprometimento com a segurança preventiva.</p>
       </div>
-      <!-- Links -->
       <div>
         <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;color:#fff;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">Links Rápidos</h4>
         <div style="width:30px;height:2px;background:#E60000;border-radius:1px;margin-bottom:14px;"></div>
@@ -968,7 +912,6 @@
           <li><a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento." target="_blank" rel="noopener" class="ftr-lnk"><i class="fa-solid fa-chevron-right" style="color:#E60000;font-size:.6rem;"></i>Orçamento</a></li>
         </ul>
       </div>
-      <!-- Contatos -->
       <div>
         <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;color:#fff;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">Contatos</h4>
         <div style="width:30px;height:2px;background:#E60000;border-radius:1px;margin-bottom:14px;"></div>
@@ -978,7 +921,6 @@
           <li><a href="mailto:tudoemincendio@gmail.com" class="ftr-lnk" style="align-items:flex-start;word-break:break-all;"><i class="fa-solid fa-envelope" style="color:#E60000;font-size:.85rem;flex-shrink:0;margin-top:2px;"></i>tudoemincendio@gmail.com</a></li>
         </ul>
       </div>
-      <!-- Local + Social -->
       <div>
         <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;color:#fff;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">Localização</h4>
         <div style="width:30px;height:2px;background:#E60000;border-radius:1px;margin-bottom:14px;"></div>
@@ -1009,21 +951,20 @@
       </div>
     </div>
   </div>
-</section>
+</footer>
 <style>@media(min-width:640px){#ftr-grid{grid-template-columns:repeat(2,1fr)!important;}}@media(min-width:1024px){#ftr-grid{grid-template-columns:repeat(4,1fr)!important;}}</style>
 
-<!-- WA FAB -->
 <a id="wa-fab" href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+um+or%C3%A7amento." target="_blank" rel="noopener" aria-label="WhatsApp">
   <i class="fa-brands fa-whatsapp" style="color:#fff;font-size:1.4rem;"></i>
 </a>
 
 <script>
 /* ── LOGO: força display correto ── */
-document.querySelectorAll('a[href="#home"] img').forEach(img => {
+document.querySelectorAll('img[alt="Tudo em Incêndio"]').forEach(img => {
   if (img.complete) {
     if (img.naturalWidth === 0) {
       img.style.display = 'none';
-      img.nextElementSibling.style.display = 'flex';
+      if(img.nextElementSibling) img.nextElementSibling.style.display = 'flex';
     }
   }
   img.addEventListener('load', function() {
