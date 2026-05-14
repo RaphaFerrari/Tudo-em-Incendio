@@ -55,7 +55,7 @@
       --shadow-hover:0 0 0 1px rgba(230,0,0,0.14),0 20px 56px rgba(230,0,0,0.09),0 6px 20px rgba(0,0,0,0.06);
       --chip-bg:rgba(230,0,0,0.05);
       --chip-border:rgba(230,0,0,0.14);
-      --header-bg:rgba(250,250,250,0.82);
+      --header-bg:rgba(250,250,250,0.98);
       --header-border:rgba(0,0,0,0.07);
       --nav-color:rgba(8,8,8,0.65);
       --accordion-border:rgba(0,0,0,0.06);
@@ -76,7 +76,7 @@
       --shadow-hover:0 0 0 1px rgba(230,0,0,0.25),0 20px 56px rgba(230,0,0,0.12),0 6px 20px rgba(0,0,0,0.4);
       --chip-bg:rgba(230,0,0,0.1);
       --chip-border:rgba(230,0,0,0.22);
-      --header-bg:rgba(13,13,15,0.88);
+      --header-bg:rgba(13,13,15,0.98);
       --header-border:rgba(255,255,255,0.06);
       --nav-color:rgba(240,240,242,0.6);
       --accordion-border:rgba(255,255,255,0.07);
@@ -117,14 +117,6 @@
     .word-red{color:#E60000;}
     .word-white{color:#fff;}
 
-    .gradient-text{
-      background:linear-gradient(135deg,#E60000 0%,#FF4444 50%,#E60000 100%);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-      background-clip:text;background-size:200%;
-      animation:gShift 4s ease infinite;
-    }
-    @keyframes gShift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
-
     .diagonal-cut{position:absolute;bottom:0;left:0;width:100%;height:72px;background:var(--bg-page);clip-path:polygon(0 100%,100% 0,100% 100%);}
 
     /* ══════════════════════════════
@@ -142,17 +134,26 @@
       border-bottom:1px solid var(--header-border);
       box-shadow:0 1px 32px rgba(0,0,0,0.06);
     }
-    .nav-lnk{
+    
+    /* NAV LINKS DESKTOP */
+    .nav-desktop .nav-lnk{
       position:relative;font-weight:500;font-size:.8125rem;letter-spacing:.01em;
-      color:rgba(255,255,255,.65);transition:color .2s;
+      color:rgba(255,255,255,.7);transition:color .2s;
     }
-    .nav-lnk::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:#E60000;border-radius:2px;transition:width .25s cubic-bezier(.4,0,.2,1);}
-    .nav-lnk:hover{color:#fff;}
-    .nav-lnk:hover::after{width:100%;}
-    #header.hdr-light .nav-lnk{color:var(--nav-color);}
-    #header.hdr-light .nav-lnk:hover{color:var(--text-main);}
+    .nav-desktop .nav-lnk::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:#E60000;border-radius:2px;transition:width .25s cubic-bezier(.4,0,.2,1);}
+    .nav-desktop .nav-lnk:hover{color:#fff;}
+    .nav-desktop .nav-lnk:hover::after{width:100%;}
+    .nav-desktop .nav-lnk.active{color:#E60000 !important;}
+    .nav-desktop .nav-lnk.active::after{width:100%;}
 
-    /* logo fallback */
+    /* Cores no Scroll (Apenas Desktop) */
+    [data-theme="light"] #header.hdr-light .nav-desktop .nav-lnk{color:rgba(8,8,8,0.65);}
+    [data-theme="light"] #header.hdr-light .nav-desktop .nav-lnk:hover{color:#080808;}
+    [data-theme="dark"] #header.hdr-light .nav-desktop .nav-lnk{color:rgba(240,240,242,0.65);}
+    [data-theme="dark"] #header.hdr-light .nav-desktop .nav-lnk:hover{color:#fff;}
+    #header.hdr-light .nav-desktop .nav-lnk.active{color:#E60000 !important;}
+
+    /* LOGO FALLBACK */
     .logo-fallback{display:none;align-items:center;gap:10px;}
     .logo-fallback .lf-icon{width:38px;height:38px;background:#E60000;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
     .logo-fallback .lf-text p{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05rem;line-height:1;letter-spacing:-.01em;}
@@ -160,7 +161,7 @@
     .logo-fallback .lf-text .l2{color:#E60000;}
     [data-theme="light"] .logo-fallback .lf-text .l1{color:#080808;}
 
-    /* Ícones de Ação do Header */
+    /* ÍCONES DE AÇÃO (Insta, Moon, Menu) */
     .hdr-action-btn {
       border: 1px solid rgba(255,255,255,.1);
       background: rgba(255,255,255,.04);
@@ -172,12 +173,13 @@
       border-color: rgba(255,255,255,.25);
       color: #fff;
     }
-    #header.hdr-light .hdr-action-btn {
+    /* Muda a cor apenas quando scrollado E no tema claro! */
+    [data-theme="light"] #header.hdr-light .hdr-action-btn {
       border-color: rgba(0,0,0,.1);
       background: rgba(0,0,0,.04);
       color: rgba(8,8,8,.6);
     }
-    #header.hdr-light .hdr-action-btn:hover {
+    [data-theme="light"] #header.hdr-light .hdr-action-btn:hover {
       background: rgba(0,0,0,.08);
       color: #080808;
     }
@@ -185,8 +187,24 @@
     /* ══════════════════════════════
        MOBILE MENU
     ══════════════════════════════ */
-    #mobile-menu{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1);}
+    #mobile-menu{
+      background: var(--header-bg);
+      border-top: 1px solid var(--header-border);
+      max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1);
+    }
     #mobile-menu.open{max-height:520px;}
+    
+    .nav-lnk-mob {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text-main);
+      display: block;
+      border-bottom: 1px solid var(--header-border);
+      transition: color .2s;
+      text-decoration: none;
+    }
+    .nav-lnk-mob:last-child { border-bottom: none; }
+    .nav-lnk-mob:hover, .nav-lnk-mob.active { color: #E60000 !important; }
 
     /* ══════════════════════════════
        BUTTONS
@@ -250,7 +268,7 @@
     .bento-card:hover .svc-icon{background:#E60000;border-color:#E60000;}
     .bento-card:hover .svc-icon i{color:#fff!important;}
 
-    /* num ghost */
+    /* NUM GHOST - VISIBILIDADE MELHORADA */
     .num-ghost{
       position:absolute;top:14px;right:18px;
       font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3.8rem;
@@ -308,9 +326,7 @@
     .valor-chip .vdot{width:6px;height:6px;border-radius:50%;background:#E60000;flex-shrink:0;}
 
     /* ══════════════════════════════
-       BENTO GRID REFACTOR 
-       MOBILE FIX: Assegurando que todas as colunas
-       ocupem 100% no celular antes do breakpoint.
+       BENTO GRID REFACTOR - FIX MOBILE
     ══════════════════════════════ */
     .bento-svc{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;}
     .bs-1, .bs-2, .bs-3, .bs-4 {grid-column:span 12;}
@@ -416,7 +432,7 @@
       </div>
     </a>
 
-    <nav class="hidden md:flex items-center gap-7">
+    <nav class="hidden md:flex items-center gap-7 nav-desktop">
       <a href="#home"     class="nav-lnk">Home</a>
       <a href="#servicos" class="nav-lnk">Serviços</a>
       <a href="#sobre"    class="nav-lnk">Sobre</a>
@@ -441,13 +457,13 @@
     </div>
   </div>
 
-  <div id="mobile-menu" style="background:rgba(7,7,10,0.97);border-top:1px solid rgba(255,255,255,.06);" class="md:hidden mt-3">
+  <div id="mobile-menu" class="md:hidden mt-3">
     <nav class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-0.5">
-      <a href="#home"     class="nav-lnk py-3 border-b" style="border-color:rgba(255,255,255,.05);display:block;">Home</a>
-      <a href="#servicos" class="nav-lnk py-3 border-b" style="border-color:rgba(255,255,255,.05);display:block;">Serviços</a>
-      <a href="#sobre"    class="nav-lnk py-3 border-b" style="border-color:rgba(255,255,255,.05);display:block;">Sobre</a>
-      <a href="#produtos" class="nav-lnk py-3 border-b" style="border-color:rgba(255,255,255,.05);display:block;">Produtos</a>
-      <a href="#contato"  class="nav-lnk py-3 block">Contato</a>
+      <a href="#home"     class="nav-lnk-mob py-3">Home</a>
+      <a href="#servicos" class="nav-lnk-mob py-3">Serviços</a>
+      <a href="#sobre"    class="nav-lnk-mob py-3">Sobre</a>
+      <a href="#produtos" class="nav-lnk-mob py-3">Produtos</a>
+      <a href="#contato"  class="nav-lnk-mob py-3">Contato</a>
       <a href="https://wa.me/5531991353168" target="_blank" rel="noopener" class="btn-fire mt-4 justify-center">
         <i class="fa-brands fa-whatsapp"></i> Falar com Especialista
       </a>
@@ -1058,10 +1074,15 @@ const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
   let cur = '';
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
-  document.querySelectorAll('.nav-lnk').forEach(l => {
+  
+  // Atualizado para pegar tanto desktop quanto mobile links
+  document.querySelectorAll('.nav-lnk, .nav-lnk-mob').forEach(l => {
     const isActive = l.getAttribute('href') === '#' + cur;
-    if (isActive) l.style.color = '#E60000';
-    else l.style.color = '';
+    if (isActive) {
+      l.classList.add('active');
+    } else {
+      l.classList.remove('active');
+    }
   });
 }, { passive: true });
 
