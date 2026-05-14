@@ -128,7 +128,7 @@
     .diagonal-cut{position:absolute;bottom:0;left:0;width:100%;height:72px;background:var(--bg-page);clip-path:polygon(0 100%,100% 0,100% 100%);}
 
     /* ══════════════════════════════
-       HEADER E ÍCONES (CORREÇÃO)
+       HEADER E ÍCONES 
     ══════════════════════════════ */
     #header{
       background:rgba(7,7,10,0.55);
@@ -160,7 +160,7 @@
     .logo-fallback .lf-text .l2{color:#E60000;}
     [data-theme="light"] .logo-fallback .lf-text .l1{color:#080808;}
 
-    /* NOVA REGRA: Ícones de Ação do Header */
+    /* Ícones de Ação do Header */
     .hdr-action-btn {
       border: 1px solid rgba(255,255,255,.1);
       background: rgba(255,255,255,.04);
@@ -172,7 +172,6 @@
       border-color: rgba(255,255,255,.25);
       color: #fff;
     }
-    /* Quando o fundo fica claro (Light Mode Scroll) */
     #header.hdr-light .hdr-action-btn {
       border-color: rgba(0,0,0,.1);
       background: rgba(0,0,0,.04);
@@ -251,14 +250,14 @@
     .bento-card:hover .svc-icon{background:#E60000;border-color:#E60000;}
     .bento-card:hover .svc-icon i{color:#fff!important;}
 
-    /* NUM GHOST (CORREÇÃO OPACIDADE) */
+    /* num ghost */
     .num-ghost{
       position:absolute;top:14px;right:18px;
       font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3.8rem;
-      color:rgba(230,0,0,0.30); /* Mais visível no Light Mode */
+      color:rgba(230,0,0,0.30);
       line-height:1;letter-spacing:-.02em;user-select:none;
     }
-    [data-theme="dark"] .num-ghost{color:rgba(230,0,0,0.40);} /* Mais visível no Dark Mode */
+    [data-theme="dark"] .num-ghost{color:rgba(230,0,0,0.40);}
 
     /* product card */
     .product-card{
@@ -309,17 +308,16 @@
     .valor-chip .vdot{width:6px;height:6px;border-radius:50%;background:#E60000;flex-shrink:0;}
 
     /* ══════════════════════════════
-       BENTO GRID REFACTOR (Diferenciais)
+       BENTO GRID REFACTOR 
+       MOBILE FIX: Assegurando que todas as colunas
+       ocupem 100% no celular antes do breakpoint.
     ══════════════════════════════ */
     .bento-svc{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;}
-    .bs-1{grid-column:span 12;}
+    .bs-1, .bs-2, .bs-3, .bs-4 {grid-column:span 12;}
     @media(min-width:768px){.bs-1{grid-column:span 7;}.bs-2{grid-column:span 5;}.bs-3{grid-column:span 5;}.bs-4{grid-column:span 7;}}
 
     .bento-diff{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;}
-    .bd-1{grid-column:span 12;}
-    .bd-cta{grid-column:span 12;}
-    .bd-seals{grid-column:span 12;}
-    .bd-phone{grid-column:span 12;}
+    .bd-1, .bd-cta, .bd-seals, .bd-phone {grid-column:span 12;}
     @media(min-width:768px){
       .bd-1{grid-column:span 8;}
       .bd-cta{grid-column:span 4;}
