@@ -1,1167 +1,1123 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tudo em Incêndio | Segurança Contra Incêndio em BH</title>
-  <meta name="description" content="Especialistas em segurança contra incêndio em Belo Horizonte. AVCB, extintores, hidrantes, sinalização. Certificados INMETRO, CREA e CBMMG." />
-
-  <!-- Tailwind CSS -->
+  <meta name="description" content="Especialistas em segurança contra incêndio em BH. AVCB, extintores, hidrantes, sinalização. Certificados INMETRO, CREA e CBMMG." />
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts: Barlow Condensed + DM Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            fire:    '#E60000',
-            'fire-dark': '#B80000',
-            'fire-light': '#FF2020',
-            'ink':   '#0A0A0A',
-            'ink-soft': '#1A1A1A',
-            'ink-muted': '#444444',
-            'chalk': '#FAFAFA',
-            'chalk-dark': '#F0F0F0',
-            'wa':    '#25D366',
-            'gold':  '#C8A84B',
+            fire:'#E60000','fire-dark':'#B80000',
+            ink:'#080808','ink-muted':'#6B6B6B',
+            chalk:'#FAFAFA','chalk-mid':'#F4F4F5','chalk-dark':'#E8E8ED',
+            wa:'#25D366', gold:'#C8A84B',
           },
           fontFamily: {
-            display: ['"Barlow Condensed"', 'sans-serif'],
-            body:    ['"DM Sans"', 'sans-serif'],
-          },
-          animation: {
-            'pulse-wa':  'pulseWa 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'fade-up':   'fadeUp 0.7s ease forwards',
-            'slide-in':  'slideIn 0.5s ease forwards',
-          },
-          keyframes: {
-            pulseWa: {
-              '0%, 100%': { boxShadow: '0 0 0 0 rgba(37,211,102,0.5)' },
-              '50%':       { boxShadow: '0 0 0 16px rgba(37,211,102,0)' },
-            },
-            fadeUp: {
-              from: { opacity: '0', transform: 'translateY(30px)' },
-              to:   { opacity: '1', transform: 'translateY(0)' },
-            },
-            slideIn: {
-              from: { opacity: '0', transform: 'translateX(-20px)' },
-              to:   { opacity: '1', transform: 'translateX(0)' },
-            },
+            display:['"Barlow Condensed"','sans-serif'],
+            body:['"DM Sans"','sans-serif'],
           },
         },
       },
     };
   </script>
-
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: #FAFAFA; color: #0A0A0A; }
+    /* ── RESET ── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .4s,color .4s;}
+    ::selection{background:#E60000;color:#fff;}
+    ::-webkit-scrollbar{width:4px;}
+    ::-webkit-scrollbar-track{background:#080808;}
+    ::-webkit-scrollbar-thumb{background:#E60000;border-radius:2px;}
 
-    /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #0A0A0A; }
-    ::-webkit-scrollbar-thumb { background: #E60000; border-radius: 3px; }
-
-    /* ── Selection ── */
-    ::selection { background: #E60000; color: #fff; }
-
-    /* ── Typography helpers ── */
-    .font-display { font-family: 'Barlow Condensed', sans-serif; }
-
-    /* ── Header ── */
-    #header {
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(10,10,10,0.08);
-      transition: background 0.3s, box-shadow 0.3s;
+    /* ══════════════════════════════
+       THEME TOKENS
+    ══════════════════════════════ */
+    :root{
+      --bg-page:#FAFAFA;
+      --bg-mid:#F4F4F5;
+      --bg-card:#ffffff;
+      --bg-card2:#F0F0F2;
+      --border-card:rgba(0,0,0,0.06);
+      --border-card-hover:rgba(230,0,0,0.15);
+      --text-main:#080808;
+      --text-muted:rgba(8,8,8,0.55);
+      --text-muted2:rgba(8,8,8,0.35);
+      --shadow-card:0 2px 0 rgba(0,0,0,0.02),0 6px 28px rgba(0,0,0,0.05);
+      --shadow-hover:0 0 0 1px rgba(230,0,0,0.14),0 20px 56px rgba(230,0,0,0.09),0 6px 20px rgba(0,0,0,0.06);
+      --chip-bg:rgba(230,0,0,0.05);
+      --chip-border:rgba(230,0,0,0.14);
+      --header-bg:rgba(250,250,250,0.82);
+      --header-border:rgba(0,0,0,0.07);
+      --nav-color:rgba(8,8,8,0.65);
+      --accordion-border:rgba(0,0,0,0.06);
+      --ext-card:rgba(244,244,245,1);
+      --footer-bg:#060608;
     }
-    #header.scrolled {
-      background: rgba(250,250,250,0.97) !important;
-      box-shadow: 0 2px 24px rgba(10,10,10,0.08);
-    }
-
-    /* ── Nav link ── */
-    .nav-link {
-      position: relative;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      color: #0A0A0A;
-      transition: color 0.2s;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px; left: 0;
-      width: 0; height: 2px;
-      background: #E60000;
-      transition: width 0.25s ease;
-    }
-    .nav-link:hover { color: #E60000; }
-    .nav-link:hover::after { width: 100%; }
-
-    /* ── Hero ── */
-    .hero-bg {
-      background-color: #0A0A0A;
-      background-image:
-        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(230,0,0,0.12) 0%, transparent 70%),
-        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-
-    .hero-diagonal {
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%; height: 80px;
-      background: #FAFAFA;
-      clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    [data-theme="dark"]{
+      --bg-page:#0D0D0F;
+      --bg-mid:#111114;
+      --bg-card:#18181C;
+      --bg-card2:#1E1E24;
+      --border-card:rgba(255,255,255,0.07);
+      --border-card-hover:rgba(230,0,0,0.3);
+      --text-main:#F0F0F2;
+      --text-muted:rgba(240,240,242,0.5);
+      --text-muted2:rgba(240,240,242,0.28);
+      --shadow-card:0 2px 0 rgba(0,0,0,0.3),0 6px 28px rgba(0,0,0,0.3);
+      --shadow-hover:0 0 0 1px rgba(230,0,0,0.25),0 20px 56px rgba(230,0,0,0.12),0 6px 20px rgba(0,0,0,0.4);
+      --chip-bg:rgba(230,0,0,0.1);
+      --chip-border:rgba(230,0,0,0.22);
+      --header-bg:rgba(13,13,15,0.88);
+      --header-border:rgba(255,255,255,0.06);
+      --nav-color:rgba(240,240,242,0.6);
+      --accordion-border:rgba(255,255,255,0.07);
+      --ext-card:rgba(30,30,36,1);
+      --footer-bg:#070709;
     }
 
-    /* ── Red accent bar ── */
-    .accent-bar {
-      display: inline-block;
-      width: 48px; height: 4px;
-      background: #E60000;
-      border-radius: 2px;
-      margin-bottom: 12px;
+    body{background:var(--bg-page);color:var(--text-main);}
+
+    /* ══════════════════════════════
+       MESH HERO
+    ══════════════════════════════ */
+    .hero-mesh{background:#07070A;position:relative;overflow:hidden;}
+    .hero-mesh::before{
+      content:'';position:absolute;inset:0;
+      background:
+        radial-gradient(ellipse 75% 65% at 15% 55%,rgba(230,0,0,0.2) 0%,transparent 60%),
+        radial-gradient(ellipse 55% 70% at 85% 20%,rgba(200,0,0,0.07) 0%,transparent 55%),
+        radial-gradient(ellipse 45% 45% at 65% 85%,rgba(160,0,0,0.06) 0%,transparent 50%);
+      animation:meshPulse 9s ease-in-out infinite alternate;
+    }
+    .hero-mesh::after{
+      content:'';position:absolute;inset:0;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.018' fill-rule='evenodd'%3E%3Ccircle cx='40' cy='40' r='1.5'/%3E%3Ccircle cx='0' cy='0' r='1.5'/%3E%3Ccircle cx='80' cy='0' r='1.5'/%3E%3Ccircle cx='0' cy='80' r='1.5'/%3E%3Ccircle cx='80' cy='80' r='1.5'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    @keyframes meshPulse{0%{opacity:.7;transform:scale(1);}100%{opacity:1;transform:scale(1.05);}}
+    .orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;animation:orbFloat 13s ease-in-out infinite;}
+    .orb-1{width:520px;height:520px;background:rgba(230,0,0,0.11);top:-140px;right:-100px;animation-delay:0s;}
+    .orb-2{width:320px;height:320px;background:rgba(160,0,0,0.07);bottom:8%;left:-90px;animation-delay:-5s;}
+    @keyframes orbFloat{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-28px) scale(1.04);}}
+
+    .hero-headline{
+      font-family:'Barlow Condensed',sans-serif;font-weight:900;
+      line-height:.95;letter-spacing:-0.025em;
+      font-size:clamp(3.6rem,8.5vw,7.5rem);
+    }
+    .word-outline{-webkit-text-stroke:1.5px rgba(255,255,255,0.25);color:transparent;}
+    .word-red{color:#E60000;}
+    .word-white{color:#fff;}
+
+    .gradient-text{
+      background:linear-gradient(135deg,#E60000 0%,#FF4444 50%,#E60000 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;background-size:200%;
+      animation:gShift 4s ease infinite;
+    }
+    @keyframes gShift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+    .diagonal-cut{position:absolute;bottom:0;left:0;width:100%;height:72px;background:var(--bg-page);clip-path:polygon(0 100%,100% 0,100% 100%);}
+
+    /* ══════════════════════════════
+       HEADER
+    ══════════════════════════════ */
+    #header{
+      background:rgba(7,7,10,0.55);
+      backdrop-filter:blur(20px) saturate(180%);
+      -webkit-backdrop-filter:blur(20px) saturate(180%);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      transition:background .35s,border-color .35s,box-shadow .35s;
+    }
+    #header.hdr-light{
+      background:var(--header-bg);
+      border-bottom:1px solid var(--header-border);
+      box-shadow:0 1px 32px rgba(0,0,0,0.06);
+    }
+    .nav-lnk{
+      position:relative;font-weight:500;font-size:.8125rem;letter-spacing:.01em;
+      color:rgba(255,255,255,.65);transition:color .2s;
+    }
+    .nav-lnk::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:#E60000;border-radius:2px;transition:width .25s cubic-bezier(.4,0,.2,1);}
+    .nav-lnk:hover{color:#fff;}
+    .nav-lnk:hover::after{width:100%;}
+    #header.hdr-light .nav-lnk{color:var(--nav-color);}
+    #header.hdr-light .nav-lnk:hover{color:var(--text-main);}
+
+    /* logo fallback */
+    .logo-fallback{display:none;align-items:center;gap:10px;}
+    .logo-fallback .lf-icon{width:38px;height:38px;background:#E60000;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .logo-fallback .lf-text p{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05rem;line-height:1;letter-spacing:-.01em;}
+    .logo-fallback .lf-text .l1{color:#fff;}
+    .logo-fallback .lf-text .l2{color:#E60000;}
+
+    /* ══════════════════════════════
+       THEME TOGGLE
+    ══════════════════════════════ */
+    #theme-toggle{
+      width:42px;height:42px;border-radius:50%;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:background .25s,border-color .25s,transform .2s;
+      color:rgba(255,255,255,.7);font-size:.95rem;
+    }
+    #theme-toggle:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);transform:rotate(20deg);}
+    #header.hdr-light #theme-toggle{
+      border-color:rgba(0,0,0,.1);background:rgba(0,0,0,.04);color:rgba(8,8,8,.6);
+    }
+    #header.hdr-light #theme-toggle:hover{background:rgba(0,0,0,.08);}
+
+    /* ══════════════════════════════
+       MOBILE MENU
+    ══════════════════════════════ */
+    #mobile-menu{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1);}
+    #mobile-menu.open{max-height:520px;}
+
+    /* ══════════════════════════════
+       BUTTONS
+    ══════════════════════════════ */
+    .btn-fire{
+      display:inline-flex;align-items:center;gap:8px;
+      background:#E60000;color:#fff;font-weight:600;font-size:.875rem;letter-spacing:.02em;
+      padding:13px 26px;border-radius:100px;border:none;cursor:pointer;
+      transition:background .2s,transform .2s cubic-bezier(.4,0,.2,1),box-shadow .2s;
+      position:relative;overflow:hidden;text-decoration:none;
+    }
+    .btn-fire:hover{background:#C80000;transform:translateY(-2px);box-shadow:0 8px 28px rgba(230,0,0,.4);}
+    .btn-ghost-light{
+      display:inline-flex;align-items:center;gap:8px;
+      color:rgba(255,255,255,.7);font-weight:500;font-size:.875rem;
+      padding:12px 26px;border-radius:100px;
+      border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
+      cursor:pointer;transition:all .2s cubic-bezier(.4,0,.2,1);text-decoration:none;
+    }
+    .btn-ghost-light:hover{color:#fff;border-color:rgba(255,255,255,.32);background:rgba(255,255,255,.08);transform:translateY(-2px);}
+    .btn-ghost-dark{
+      display:inline-flex;align-items:center;gap:8px;
+      color:var(--text-muted);font-weight:500;font-size:.875rem;
+      padding:12px 26px;border-radius:100px;
+      border:1px solid var(--border-card);background:transparent;
+      cursor:pointer;transition:all .2s cubic-bezier(.4,0,.2,1);text-decoration:none;
+    }
+    .btn-ghost-dark:hover{border-color:#E60000;color:#E60000;transform:translateY(-2px);}
+
+    /* ══════════════════════════════
+       CARDS
+    ══════════════════════════════ */
+    .light-card{
+      background:var(--bg-card);border:1px solid var(--border-card);
+      border-radius:20px;box-shadow:var(--shadow-card);
+      transition:box-shadow .35s cubic-bezier(.4,0,.2,1),transform .35s cubic-bezier(.4,0,.2,1),border-color .3s;
+    }
+    .light-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px);border-color:var(--border-card-hover);}
+
+    .bento-card{
+      background:var(--bg-card);border:1px solid var(--border-card);
+      border-radius:20px;padding:28px 32px;
+      box-shadow:var(--shadow-card);position:relative;overflow:hidden;
+      transition:box-shadow .35s cubic-bezier(.4,0,.2,1),transform .35s cubic-bezier(.4,0,.2,1),border-color .3s;
+    }
+    .bento-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px);border-color:var(--border-card-hover);}
+
+    .bento-dark{
+      background:#0E0E11;border:1px solid rgba(255,255,255,.06);
+      border-top:1px solid rgba(255,255,255,.1);
+      border-radius:20px;padding:32px 36px;overflow:hidden;
+    }
+    [data-theme="dark"] .bento-dark{background:#141418;border-color:rgba(255,255,255,.08);}
+
+    /* service icon */
+    .svc-icon{
+      width:50px;height:50px;background:var(--chip-bg);border:1px solid var(--chip-border);
+      border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+      transition:background .3s,border-color .3s;
+    }
+    .bento-card:hover .svc-icon{background:#E60000;border-color:#E60000;}
+    .bento-card:hover .svc-icon i{color:#fff!important;}
+
+    /* num ghost */
+    .num-ghost{
+      position:absolute;top:14px;right:18px;
+      font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3.8rem;
+      color:rgba(230,0,0,.07);line-height:1;letter-spacing:-.02em;user-select:none;
+    }
+    [data-theme="dark"] .num-ghost{color:rgba(230,0,0,.12);}
+
+    /* product card */
+    .product-card{
+      background:var(--bg-card);border:1px solid var(--border-card);
+      border-radius:20px;overflow:hidden;box-shadow:var(--shadow-card);
+      transition:all .5s cubic-bezier(.4,0,.2,1);position:relative;
+    }
+    .product-card::before{
+      content:'';position:absolute;inset:0;border-radius:20px;z-index:0;pointer-events:none;
+      background:radial-gradient(circle at 50% 110%,rgba(230,0,0,.09) 0%,transparent 65%);
+      opacity:0;transition:opacity .5s;
+    }
+    .product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);border-color:var(--border-card-hover);}
+    .product-card:hover::before{opacity:1;}
+
+    .product-img-wrap{position:relative;overflow:hidden;background:var(--bg-mid);}
+    .product-img-wrap img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .7s cubic-bezier(.4,0,.2,1);}
+    .product-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.18) 0%,transparent 55%);opacity:0;transition:opacity .4s;}
+    .product-card:hover .product-img-wrap img{transform:scale(1.08);}
+    .product-card:hover .product-img-wrap::after{opacity:1;}
+
+    /* seal card */
+    .seal-card{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);border-top:1px solid rgba(255,255,255,.15);
+      border-radius:20px;padding:24px 28px;display:flex;align-items:center;gap:16px;
+      transition:background .3s,border-color .3s,transform .3s;
+    }
+    .seal-card:hover{background:rgba(255,255,255,.07);border-color:rgba(200,168,75,.28);transform:translateY(-3px);}
+
+    /* avcb point */
+    .avcb-pt{
+      display:flex;align-items:flex-start;gap:14px;padding:20px;
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+      border-top:1px solid rgba(255,255,255,.12);border-radius:16px;
+      transition:background .3s,border-color .3s,transform .3s;
+    }
+    .avcb-pt:hover{background:rgba(255,255,255,.08);border-color:rgba(230,0,0,.25);transform:translateY(-2px);}
+    .avcb-ico{width:40px;height:40px;border-radius:10px;background:rgba(230,0,0,.13);border:1px solid rgba(230,0,0,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+    /* contact card */
+    .contact-card{
+      background:var(--bg-card);border:1px solid var(--border-card);
+      border-radius:20px;padding:30px;display:flex;flex-direction:column;align-items:center;text-align:center;
+      box-shadow:var(--shadow-card);transition:all .35s cubic-bezier(.4,0,.2,1);text-decoration:none;
+    }
+    .contact-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:var(--border-card-hover);}
+
+    /* valor chip */
+    .valor-chip{
+      display:inline-flex;align-items:center;gap:7px;padding:7px 15px;
+      background:var(--chip-bg);border:1px solid var(--chip-border);
+      border-radius:100px;font-size:.8125rem;font-weight:500;color:var(--text-main);
+      transition:background .2s,border-color .2s,transform .2s;cursor:default;
+    }
+    .valor-chip:hover{background:rgba(230,0,0,.1);border-color:rgba(230,0,0,.28);transform:translateY(-1px);}
+    .valor-chip .vdot{width:6px;height:6px;border-radius:50%;background:#E60000;flex-shrink:0;}
+
+    /* ══════════════════════════════
+       BENTO GRID
+    ══════════════════════════════ */
+    .bento-svc{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;}
+    .bs-1{grid-column:span 12;}
+    @media(min-width:768px){.bs-1{grid-column:span 7;}.bs-2{grid-column:span 5;}.bs-3{grid-column:span 5;}.bs-4{grid-column:span 7;}}
+
+    .bento-diff{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;}
+    .bd-1{grid-column:span 12;}
+    @media(min-width:768px){
+      .bd-1{grid-column:span 8;}.bd-2,.bd-3,.bd-4{grid-column:span 4;}.bd-5{grid-column:span 6;}.bd-6{grid-column:span 6;}
     }
 
-    /* ── Service card ── */
-    .service-card {
-      border: 1.5px solid #EAEAEA;
-      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-    }
-    .service-card:hover {
-      border-color: #E60000;
-      transform: translateY(-6px);
-      box-shadow: 0 12px 40px rgba(230,0,0,0.12);
-    }
-    .service-icon {
-      width: 56px; height: 56px;
-      background: rgba(230,0,0,0.08);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.25s;
-    }
-    .service-card:hover .service-icon { background: #E60000; }
-    .service-card:hover .service-icon i { color: #fff !important; }
+    /* ══════════════════════════════
+       SECTIONS helpers
+    ══════════════════════════════ */
+    .sec-eye{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#E60000;}
+    .sec-h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;line-height:1;letter-spacing:-.015em;color:var(--text-main);font-size:clamp(2.4rem,4.5vw,3.8rem);}
+    .sec-h2-w{font-family:'Barlow Condensed',sans-serif;font-weight:800;line-height:1;letter-spacing:-.015em;color:#fff;font-size:clamp(2.4rem,4.5vw,3.8rem);}
+    .stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,5vw,4rem);color:#E60000;line-height:1;letter-spacing:-.02em;}
+    .hover-arrow{display:inline-flex;align-items:center;gap:6px;font-size:.8125rem;font-weight:600;color:#E60000;transition:gap .2s;text-decoration:none;}
+    .hover-arrow:hover{gap:10px;}
+    .red-rule{width:36px;height:2.5px;background:#E60000;border-radius:2px;}
 
-    /* ── Product card ── */
-    .product-card {
-      border: 1.5px solid #EAEAEA;
-      overflow: hidden;
-      transition: box-shadow 0.3s, transform 0.3s;
+    /* ══════════════════════════════
+       ACCORDION
+    ══════════════════════════════ */
+    .acc-item{border-bottom:1px solid var(--accordion-border);}
+    .acc-btn{
+      width:100%;display:flex;align-items:center;justify-content:space-between;
+      padding:17px 0;background:none;border:none;cursor:pointer;
+      font-family:'DM Sans',sans-serif;font-weight:600;font-size:.9375rem;
+      color:var(--text-main);text-align:left;transition:color .2s;
     }
-    .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(10,10,10,0.1);
+    .acc-btn:hover{color:#E60000;}
+    .acc-icon{
+      width:26px;height:26px;border-radius:50%;background:var(--chip-bg);border:1px solid var(--chip-border);
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .25s,transform .3s;
     }
-    .product-card:hover .product-img-wrap::after {
-      opacity: 1;
-    }
-    .product-img-wrap {
-      position: relative;
-      overflow: hidden;
-      background: #F0F0F0;
-    }
-    .product-img-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(230,0,0,0.15), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .product-img-wrap img {
-      transition: transform 0.5s ease;
-    }
-    .product-card:hover .product-img-wrap img { transform: scale(1.06); }
+    .acc-btn[aria-expanded="true"] .acc-icon{background:#E60000;border-color:#E60000;transform:rotate(45deg);}
+    .acc-btn[aria-expanded="true"] .acc-icon svg{color:#fff;}
+    .acc-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1);}
+    .acc-body.open{max-height:360px;}
+    .acc-inner{padding-bottom:16px;}
+    .ext-chip{display:inline-flex;align-items:center;padding:6px 12px;background:var(--ext-card);border:1px solid var(--border-card);border-radius:10px;font-size:.75rem;font-weight:500;color:var(--text-muted);transition:border-color .2s;}
+    .ext-chip:hover{border-color:rgba(230,0,0,.25);}
 
-    /* ── Badge/seal ── */
-    .seal-badge {
-      border: 1.5px solid #EAEAEA;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .seal-badge:hover { border-color: #E60000; background: rgba(230,0,0,0.04); }
+    /* ══════════════════════════════
+       FOOTER LINK
+    ══════════════════════════════ */
+    .ftr-lnk{color:rgba(255,255,255,.35);font-size:.875rem;transition:color .2s;display:flex;align-items:center;gap:7px;text-decoration:none;}
+    .ftr-lnk:hover{color:rgba(255,255,255,.85);}
 
-    /* ── WhatsApp FAB ── */
-    #wa-fab {
-      position: fixed;
-      bottom: 28px; right: 28px;
-      z-index: 9999;
-      width: 60px; height: 60px;
-      border-radius: 50%;
-      background: #25D366;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
-      animation: pulseWa 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-      transition: transform 0.2s, background 0.2s;
-    }
-    #wa-fab:hover { transform: scale(1.1); background: #1ebe5d; }
+    /* ══════════════════════════════
+       REVEAL
+    ══════════════════════════════ */
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
 
-    @keyframes pulseWa {
-      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0.5); }
-      50%       { box-shadow: 0 4px 20px rgba(37,211,102,0.45), 0 0 0 16px rgba(37,211,102,0); }
+    /* ══════════════════════════════
+       WA FAB
+    ══════════════════════════════ */
+    #wa-fab{
+      position:fixed;bottom:28px;right:28px;z-index:9999;
+      width:56px;height:56px;border-radius:50%;background:#25D366;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 20px rgba(37,211,102,.5);
+      transition:transform .25s,box-shadow .25s;text-decoration:none;
+      animation:waPulse 2.5s ease infinite;
+    }
+    #wa-fab:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(37,211,102,.6);}
+    @keyframes waPulse{
+      0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,.4);}
+      60%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 14px rgba(37,211,102,0);}
     }
 
-    /* ── CTA Button ── */
-    .btn-primary {
-      background: #E60000;
-      color: #fff;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    }
-    .btn-primary:hover {
-      background: #B80000;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(230,0,0,0.35);
-    }
-    .btn-secondary {
-      border: 2px solid rgba(255,255,255,0.5);
-      color: #fff;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      transition: border-color 0.2s, background 0.2s, transform 0.15s;
-    }
-    .btn-secondary:hover {
-      border-color: #fff;
-      background: rgba(255,255,255,0.1);
-      transform: translateY(-2px);
-    }
-
-    /* ── Section title ── */
-    .section-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-    }
-
-    /* ── Stats strip ── */
-    .stat-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-size: clamp(2.4rem, 5vw, 3.5rem);
-      color: #E60000;
-      line-height: 1;
-    }
-
-    /* ── Mobile menu ── */
-    #mobile-menu {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-    #mobile-menu.open { max-height: 400px; }
-
-    /* ── Reveal on scroll ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── Footer ── */
-    .footer-link {
-      color: rgba(255,255,255,0.65);
-      transition: color 0.2s;
-    }
-    .footer-link:hover { color: #E60000; }
-
-    /* ── Divider ── */
-    .red-divider {
-      width: 40px; height: 3px;
-      background: #E60000;
-      border-radius: 2px;
-    }
+    /* ══════════════════════════════
+       DARK SECTION BG helpers
+    ══════════════════════════════ */
+    .dark-section{background:#07070A;}
+    [data-theme="dark"] .dark-section{background:#0A0A0E;}
+    .mid-section{background:var(--bg-mid);}
+    .page-section{background:var(--bg-page);}
+    [data-theme="dark"] .chalk-section-bg{background:#111114;}
   </style>
 </head>
-
 <body class="antialiased">
 
-<!-- ═══════════════════════════════════════
-     HEADER STICKY
-═══════════════════════════════════════ -->
-<header id="header" class="fixed top-0 left-0 right-0 z-50 bg-chalk/90 py-3">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+<!-- ════════════════════════════════════
+     HEADER
+════════════════════════════════════ -->
+<header id="header" class="fixed top-0 left-0 right-0 z-50 py-3.5">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between gap-4">
 
-    <!-- Logo -->
+    <!-- LOGO -->
     <a href="#home" class="flex items-center gap-3 flex-shrink-0">
-      <img src="image_9b0d9f.png" alt="Tudo em Incêndio" class="h-12 w-auto"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-      <!-- Fallback logo -->
-      <div class="hidden items-center gap-2">
-        <div class="w-10 h-10 bg-fire rounded-lg flex items-center justify-center">
-          <i class="fa-solid fa-fire-extinguisher text-white text-xl"></i>
-        </div>
-        <div class="leading-tight">
-          <span class="font-display font-900 text-xl tracking-tight text-ink uppercase">TUDO EM</span><br>
-          <span class="font-display font-900 text-xl tracking-tight text-fire uppercase">INCÊNDIO</span>
+      <img src="logo.png" alt="Tudo em Incêndio"
+           style="height:44px;width:auto;display:block;"
+           onload="this.style.display='block';this.nextElementSibling.style.display='none';"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="logo-fallback">
+        <div class="lf-icon"><i class="fa-solid fa-fire-extinguisher text-white" style="font-size:1.1rem;"></i></div>
+        <div class="lf-text">
+          <p class="l1">TUDO EM</p>
+          <p class="l2">INCÊNDIO</p>
         </div>
       </div>
     </a>
 
-    <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-8">
-      <a href="#home"     class="nav-link text-sm">Home</a>
-      <a href="#servicos" class="nav-link text-sm">Serviços</a>
-      <a href="#sobre"    class="nav-link text-sm">Sobre</a>
-      <a href="#produtos" class="nav-link text-sm">Produtos</a>
-      <a href="#contato"  class="nav-link text-sm">Contato</a>
+    <!-- NAV DESKTOP -->
+    <nav class="hidden md:flex items-center gap-7">
+      <a href="#home"     class="nav-lnk">Home</a>
+      <a href="#servicos" class="nav-lnk">Serviços</a>
+      <a href="#sobre"    class="nav-lnk">Sobre</a>
+      <a href="#produtos" class="nav-lnk">Produtos</a>
+      <a href="#contato"  class="nav-lnk">Contato</a>
     </nav>
 
-    <!-- Right: Instagram + CTA -->
-    <div class="flex items-center gap-4">
-      <a href="https://www.instagram.com/tudoemincendio/" target="_blank" rel="noopener"
-         class="text-ink hover:text-fire transition-colors duration-200 text-xl"
-         aria-label="Instagram">
-        <i class="fa-brands fa-instagram"></i>
+    <!-- RIGHT ACTIONS -->
+    <div class="flex items-center gap-2.5">
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/tudoemincendio/" target="_blank" rel="noopener" aria-label="Instagram"
+         class="hidden sm:flex w-9 h-9 rounded-xl items-center justify-center text-white/60 hover:text-white transition-colors"
+         style="border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);">
+        <i class="fa-brands fa-instagram" style="font-size:1rem;"></i>
       </a>
-      <a href="https://wa.me/5531991353168" target="_blank" rel="noopener"
-         class="hidden sm:inline-flex btn-primary text-sm px-4 py-2 rounded-full items-center gap-2">
-        <i class="fa-brands fa-whatsapp"></i>
-        Falar Agora
+      <!-- Theme toggle -->
+      <button id="theme-toggle" aria-label="Alternar tema">
+        <i class="fa-solid fa-moon" id="theme-icon"></i>
+      </button>
+      <!-- CTA -->
+      <a href="https://wa.me/5531991353168" target="_blank" rel="noopener" class="btn-fire hidden sm:inline-flex" style="padding:10px 18px;font-size:.8125rem;">
+        <i class="fa-brands fa-whatsapp" style="font-size:.95rem;"></i> Falar Agora
       </a>
       <!-- Hamburger -->
-      <button id="hamburger" class="md:hidden p-2 rounded-lg hover:bg-chalk-dark transition-colors" aria-label="Menu">
-        <i class="fa-solid fa-bars text-ink text-xl"></i>
+      <button id="hamburger" class="md:hidden w-9 h-9 rounded-xl flex items-center justify-center text-white/70"
+              style="border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);" aria-label="Menu">
+        <i class="fa-solid fa-bars" style="font-size:.95rem;"></i>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="md:hidden bg-chalk border-t border-chalk-dark">
-    <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
-      <a href="#home"     class="nav-link py-2 text-sm border-b border-chalk-dark">Home</a>
-      <a href="#servicos" class="nav-link py-2 text-sm border-b border-chalk-dark">Serviços</a>
-      <a href="#sobre"    class="nav-link py-2 text-sm border-b border-chalk-dark">Sobre</a>
-      <a href="#produtos" class="nav-link py-2 text-sm border-b border-chalk-dark">Produtos</a>
-      <a href="#contato"  class="nav-link py-2 text-sm">Contato</a>
-      <a href="https://wa.me/5531991353168" target="_blank" rel="noopener"
-         class="btn-primary text-sm px-4 py-2.5 rounded-lg text-center mt-3 flex items-center justify-center gap-2">
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" style="background:rgba(7,7,10,0.97);border-top:1px solid rgba(255,255,255,.06);" class="md:hidden mt-3">
+    <nav class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-0.5">
+      <a href="#home"     class="nav-lnk py-3 border-b" style="border-color:rgba(255,255,255,.05);display:block;">Home</a>
+      <a href="#servicos" class="nav-lnk py-3 border-b" style="border-color:rgba(255,255,255,.05);display:block;">Serviços</a>
+      <a href="#sobre"    class="nav-lnk py-3 border-b" style="border-color:rgba(255,255,255,.05);display:block;">Sobre</a>
+      <a href="#produtos" class="nav-lnk py-3 border-b" style="border-color:rgba(255,255,255,.05);display:block;">Produtos</a>
+      <a href="#contato"  class="nav-lnk py-3 block">Contato</a>
+      <a href="https://wa.me/5531991353168" target="_blank" rel="noopener" class="btn-fire mt-4 justify-center">
         <i class="fa-brands fa-whatsapp"></i> Falar com Especialista
       </a>
     </nav>
   </div>
 </header>
 
-
-<!-- ═══════════════════════════════════════
-     HERO SECTION
-═══════════════════════════════════════ -->
-<section id="home" class="hero-bg relative min-h-screen flex items-center pt-20 pb-28 overflow-hidden">
-
-  <!-- Decorative fire gradient glow -->
-  <div class="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-       style="background:radial-gradient(circle, rgba(230,0,0,0.15) 0%, transparent 70%); filter:blur(60px);"></div>
-
-  <!-- Vertical red line accent -->
-  <div class="absolute left-0 top-0 h-full w-1 bg-fire opacity-60"></div>
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-    <div class="max-w-3xl">
-
-      <!-- Pill badge -->
-      <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-6">
-        <span class="w-2 h-2 rounded-full bg-fire animate-pulse"></span>
-        <span class="text-white/70 text-xs font-body font-medium tracking-widest uppercase">
-          Especialistas em Segurança Contra Incêndio · BH
-        </span>
+<!-- ════════════════════════════════════
+     HERO
+════════════════════════════════════ -->
+<section id="home" class="hero-mesh relative min-h-screen flex items-center pt-24 pb-28 overflow-hidden">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full">
+    <div class="max-w-4xl">
+      <div class="inline-flex items-center gap-2.5 mb-8" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:6px 16px;">
+        <span style="width:7px;height:7px;border-radius:50%;background:#E60000;animation:pulse 2s infinite;display:block;"></span>
+        <span style="color:rgba(255,255,255,.45);font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;">Especialistas · Belo Horizonte · MG</span>
       </div>
-
-      <!-- Headline -->
-      <h1 class="section-title text-white mb-5"
-          style="font-size: clamp(2.8rem, 6.5vw, 5.2rem); line-height:1.05;">
-        Sua Empresa<br>
-        <span class="text-fire">Protegida</span> e em<br>
-        Conformidade com o <span class="text-fire">AVCB</span>
+      <h1 class="hero-headline mb-8">
+        <span class="word-white block">PROTEÇÃO</span>
+        <span class="word-red block">CONTRA</span>
+        <span class="word-outline block">INCÊNDIO</span>
       </h1>
-
-      <!-- Subheadline -->
-      <p class="font-body text-white/70 text-lg md:text-xl mb-8 max-w-xl leading-relaxed">
-        Mais de uma década fornecendo equipamentos e serviços de prevenção de incêndio com excelência.
-        Certificados pelo <strong class="text-white">INMETRO</strong>,
-        <strong class="text-white">CREA</strong> e
-        <strong class="text-white">CBMMG</strong>.
+      <p style="color:rgba(255,255,255,.5);font-size:1.125rem;line-height:1.7;max-width:480px;font-weight:300;margin-bottom:2.5rem;">
+        Soluções completas em segurança, do projeto ao AVCB. Certificados pelo
+        <span style="color:rgba(255,255,255,.8);font-weight:500;">INMETRO</span>,
+        <span style="color:rgba(255,255,255,.8);font-weight:500;">CREA</span> e
+        <span style="color:rgba(255,255,255,.8);font-weight:500;">CBMMG</span>.
       </p>
-
-      <!-- CTAs -->
-      <div class="flex flex-wrap gap-4 mb-12">
-        <a href="#servicos"
-           class="btn-secondary inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm">
-          <i class="fa-solid fa-shield-halved"></i>
-          Nossos Serviços
+      <div class="flex flex-wrap gap-3 mb-12">
+        <a href="https://wa.me/5531991353168" target="_blank" rel="noopener" class="btn-fire">
+          <i class="fa-brands fa-whatsapp" style="font-size:1rem;"></i> Falar com Especialista
         </a>
-        <a href="https://wa.me/5531991353168" target="_blank" rel="noopener"
-           class="btn-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm">
-          <i class="fa-brands fa-whatsapp"></i>
-          Falar com Especialista
+        <a href="#servicos" class="btn-ghost-light">
+          <i class="fa-solid fa-shield-halved" style="font-size:.875rem;"></i> Nossos Serviços
         </a>
       </div>
-
       <!-- Seals -->
-      <div class="flex flex-wrap gap-3">
-        <div class="seal-badge flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2">
-          <i class="fa-solid fa-certificate text-gold text-lg"></i>
-          <span class="text-white/80 text-xs font-medium">INMETRO</span>
+      <div class="flex flex-wrap gap-2.5">
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;">
+          <i class="fa-solid fa-certificate" style="color:#C8A84B;font-size:.875rem;"></i>
+          <span style="color:rgba(255,255,255,.55);font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;">INMETRO</span>
         </div>
-        <div class="seal-badge flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2">
-          <i class="fa-solid fa-award text-gold text-lg"></i>
-          <span class="text-white/80 text-xs font-medium">CREA</span>
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;">
+          <i class="fa-solid fa-award" style="color:#C8A84B;font-size:.875rem;"></i>
+          <span style="color:rgba(255,255,255,.55);font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;">CREA</span>
         </div>
-        <div class="seal-badge flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2">
-          <i class="fa-solid fa-fire-flame-curved text-gold text-lg"></i>
-          <span class="text-white/80 text-xs font-medium">CBMMG</span>
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;">
+          <i class="fa-solid fa-fire-flame-curved" style="color:#C8A84B;font-size:.875rem;"></i>
+          <span style="color:rgba(255,255,255,.55);font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;">CBMMG</span>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Diagonal cut -->
-  <div class="hero-diagonal"></div>
+  <div class="diagonal-cut"></div>
 </section>
 
-
-<!-- ═══════════════════════════════════════
-     STATS STRIP
-═══════════════════════════════════════ -->
-<section class="bg-chalk-dark py-12 border-b border-chalk-dark">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-
-      <div class="reveal">
-        <div class="stat-num">10+</div>
-        <p class="font-body text-ink-muted text-sm mt-1 font-medium">Anos de Experiência</p>
-      </div>
-      <div class="reveal" style="transition-delay:0.1s">
-        <div class="stat-num">5k+</div>
-        <p class="font-body text-ink-muted text-sm mt-1 font-medium">Clientes Atendidos</p>
-      </div>
-      <div class="reveal" style="transition-delay:0.2s">
-        <div class="stat-num">100%</div>
-        <p class="font-body text-ink-muted text-sm mt-1 font-medium">Conformidade CBMMG</p>
-      </div>
-      <div class="reveal" style="transition-delay:0.3s">
-        <div class="stat-num">3</div>
-        <p class="font-body text-ink-muted text-sm mt-1 font-medium">Certificações Oficiais</p>
-      </div>
-
+<!-- ════════════════════════════════════
+     STATS
+════════════════════════════════════ -->
+<section class="page-section py-14" style="border-bottom:1px solid var(--border-card);">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="text-center reveal"><div class="stat-num">10+</div><p style="color:var(--text-muted);font-size:.875rem;margin-top:4px;font-weight:500;">Anos de Experiência</p></div>
+      <div class="text-center reveal" style="transition-delay:.1s"><div class="stat-num">5k+</div><p style="color:var(--text-muted);font-size:.875rem;margin-top:4px;font-weight:500;">Clientes Atendidos</p></div>
+      <div class="text-center reveal" style="transition-delay:.2s"><div class="stat-num">100%</div><p style="color:var(--text-muted);font-size:.875rem;margin-top:4px;font-weight:500;">Conformidade CBMMG</p></div>
+      <div class="text-center reveal" style="transition-delay:.3s"><div class="stat-num">3</div><p style="color:var(--text-muted);font-size:.875rem;margin-top:4px;font-weight:500;">Certificações Oficiais</p></div>
     </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════
-     SERVIÇOS
-═══════════════════════════════════════ -->
-<section id="servicos" class="py-24 bg-chalk">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-
-    <!-- Header -->
-    <div class="text-center mb-16 reveal">
-      <div class="flex justify-center">
-        <span class="accent-bar"></span>
-      </div>
-      <h2 class="section-title text-ink mb-4" style="font-size:clamp(2.2rem,4.5vw,3.5rem);">
-        Nossos Serviços
-      </h2>
-      <p class="font-body text-ink-muted text-lg max-w-xl mx-auto">
-        Soluções completas em segurança contra incêndio — do projeto à regularização, com agilidade e responsabilidade técnica.
-      </p>
+<!-- ════════════════════════════════════
+     SERVIÇOS — BENTO GRID
+════════════════════════════════════ -->
+<section id="servicos" class="page-section py-24">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="mb-14 reveal">
+      <p class="sec-eye mb-3">O que fazemos</p>
+      <h2 class="sec-h2">Nossos Serviços</h2>
+      <p style="color:var(--text-muted);font-size:1.0625rem;margin-top:14px;max-width:500px;line-height:1.7;">Soluções completas em segurança contra incêndio — do projeto à regularização.</p>
     </div>
-
-    <!-- Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
+    <div class="bento-svc reveal">
       <!-- AVCB -->
-      <div class="service-card bg-white rounded-2xl p-7 reveal">
-        <div class="service-icon mb-5">
-          <i class="fa-solid fa-file-contract text-fire text-2xl"></i>
+      <div class="bs-1 bento-card" style="min-height:260px;display:flex;flex-direction:column;justify-content:space-between;">
+        <span class="num-ghost">01</span>
+        <div>
+          <div class="svc-icon mb-5"><i class="fa-solid fa-file-contract" style="color:#E60000;font-size:1.2rem;"></i></div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.75rem;letter-spacing:-.01em;color:var(--text-main);margin-bottom:10px;line-height:1.1;">Projetos AVCB</h3>
+          <p style="color:var(--text-muted);font-size:.875rem;line-height:1.7;max-width:380px;">Elaboração e aprovação do Auto de Vistoria do Corpo de Bombeiros com suporte técnico especializado do início ao fim — Emissão e Execução de Projeto.</p>
         </div>
-        <h3 class="font-display font-700 text-xl text-ink mb-3 leading-snug">Projetos AVCB</h3>
-        <p class="font-body text-ink-muted text-sm leading-relaxed">
-          Elaboração e aprovação de projetos de Auto de Vistoria do Corpo de Bombeiros com suporte técnico especializado do início ao fim.
-        </p>
-        <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+Projetos+AVCB."
-           target="_blank" rel="noopener"
-           class="inline-flex items-center gap-1.5 text-fire font-semibold text-sm mt-5 hover:gap-3 transition-all duration-200">
-          Saiba mais <i class="fa-solid fa-arrow-right text-xs"></i>
-        </a>
+        <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+Projetos+AVCB." target="_blank" rel="noopener" class="hover-arrow" style="margin-top:22px;">Solicitar Projeto <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i></a>
       </div>
-
       <!-- Manutenção -->
-      <div class="service-card bg-white rounded-2xl p-7 reveal" style="transition-delay:0.1s">
-        <div class="service-icon mb-5">
-          <i class="fa-solid fa-screwdriver-wrench text-fire text-2xl"></i>
+      <div class="bs-2 bento-card" style="min-height:260px;display:flex;flex-direction:column;justify-content:space-between;">
+        <span class="num-ghost">02</span>
+        <div>
+          <div class="svc-icon mb-5"><i class="fa-solid fa-screwdriver-wrench" style="color:#E60000;font-size:1.2rem;"></i></div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.75rem;letter-spacing:-.01em;color:var(--text-main);margin-bottom:10px;line-height:1.1;">Manutenção</h3>
+          <p style="color:var(--text-muted);font-size:.875rem;line-height:1.7;">Recarga e manutenção preventiva e corretiva de extintores e sistemas hidráulicos. Conformidade com normas ABNT.</p>
         </div>
-        <h3 class="font-display font-700 text-xl text-ink mb-3 leading-snug">Manutenção</h3>
-        <p class="font-body text-ink-muted text-sm leading-relaxed">
-          Recarga e manutenção preventiva e corretiva de extintores e sistemas hidráulicos. Conformidade garantida com as normas ABNT.
-        </p>
-        <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+Manuten%C3%A7%C3%A3o."
-           target="_blank" rel="noopener"
-           class="inline-flex items-center gap-1.5 text-fire font-semibold text-sm mt-5 hover:gap-3 transition-all duration-200">
-          Saiba mais <i class="fa-solid fa-arrow-right text-xs"></i>
-        </a>
+        <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+Manuten%C3%A7%C3%A3o." target="_blank" rel="noopener" class="hover-arrow" style="margin-top:22px;">Saiba mais <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i></a>
       </div>
-
       <!-- Instalação -->
-      <div class="service-card bg-white rounded-2xl p-7 reveal" style="transition-delay:0.2s">
-        <div class="service-icon mb-5">
-          <i class="fa-solid fa-helmet-safety text-fire text-2xl"></i>
+      <div class="bs-3 bento-card" style="min-height:240px;display:flex;flex-direction:column;justify-content:space-between;">
+        <span class="num-ghost">03</span>
+        <div>
+          <div class="svc-icon mb-5"><i class="fa-solid fa-helmet-safety" style="color:#E60000;font-size:1.2rem;"></i></div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.75rem;letter-spacing:-.01em;color:var(--text-main);margin-bottom:10px;line-height:1.1;">Instalação</h3>
+          <p style="color:var(--text-muted);font-size:.875rem;line-height:1.7;">Hidrantes, sprinklers, alarmes e extintores instalados em conformidade com o CBMMG e normas vigentes.</p>
         </div>
-        <h3 class="font-display font-700 text-xl text-ink mb-3 leading-snug">Instalação</h3>
-        <p class="font-body text-ink-muted text-sm leading-relaxed">
-          Instalação de sistemas de combate e detecção de incêndio: hidrantes, sprinklers, alarmes e extintores em conformidade com o CBMMG.
-        </p>
-        <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+Instala%C3%A7%C3%A3o."
-           target="_blank" rel="noopener"
-           class="inline-flex items-center gap-1.5 text-fire font-semibold text-sm mt-5 hover:gap-3 transition-all duration-200">
-          Saiba mais <i class="fa-solid fa-arrow-right text-xs"></i>
-        </a>
+        <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+Instala%C3%A7%C3%A3o." target="_blank" rel="noopener" class="hover-arrow" style="margin-top:22px;">Saiba mais <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i></a>
       </div>
-
-      <!-- Tintura de Solo -->
-      <div class="service-card bg-white rounded-2xl p-7 reveal" style="transition-delay:0.3s">
-        <div class="service-icon mb-5">
-          <i class="fa-solid fa-paint-roller text-fire text-2xl"></i>
+      <!-- Tintura -->
+      <div class="bs-4 bento-card" style="min-height:240px;display:flex;flex-direction:column;justify-content:space-between;">
+        <span class="num-ghost">04</span>
+        <div>
+          <div class="svc-icon mb-5"><i class="fa-solid fa-paint-roller" style="color:#E60000;font-size:1.2rem;"></i></div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.75rem;letter-spacing:-.01em;color:var(--text-main);margin-bottom:10px;line-height:1.1;">Tintura de Solo</h3>
+          <p style="color:var(--text-muted);font-size:.875rem;line-height:1.7;max-width:380px;">Demarcação de rotas de fuga e áreas de emergência com tinta de alto desempenho. Visibilidade total e conformidade normativa garantidas.</p>
         </div>
-        <h3 class="font-display font-700 text-xl text-ink mb-3 leading-snug">Tintura de Solo</h3>
-        <p class="font-body text-ink-muted text-sm leading-relaxed">
-          Demarcação de rotas de fuga e áreas de emergência com tinta de alto desempenho, garantindo visibilidade e conformidade normativa.
-        </p>
-        <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+Tintura+de+Solo."
-           target="_blank" rel="noopener"
-           class="inline-flex items-center gap-1.5 text-fire font-semibold text-sm mt-5 hover:gap-3 transition-all duration-200">
-          Saiba mais <i class="fa-solid fa-arrow-right text-xs"></i>
-        </a>
+        <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+Tintura+de+Solo." target="_blank" rel="noopener" class="hover-arrow" style="margin-top:22px;">Saiba mais <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i></a>
       </div>
-
     </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════
-     CTA BANNER
-═══════════════════════════════════════ -->
-<section class="bg-fire py-14">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 reveal">
-    <div>
-      <h3 class="font-display font-800 text-white text-3xl md:text-4xl leading-tight mb-2">
-        Precisa regularizar seu AVCB?
-      </h3>
-      <p class="text-white/85 font-body">Atendemos empresas em toda a Grande BH com rapidez e segurança.</p>
-    </div>
-    <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+preciso+regularizar+meu+AVCB.+Podem+me+ajudar%3F"
-       target="_blank" rel="noopener"
-       class="flex-shrink-0 inline-flex items-center gap-2 bg-white text-fire font-semibold px-8 py-4 rounded-full text-sm hover:bg-chalk-dark transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
-      <i class="fa-brands fa-whatsapp text-wa text-lg"></i>
-      Solicitar Orçamento Grátis
-    </a>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════
-     QUEM SOMOS (Foto da Fachada)
-═══════════════════════════════════════ -->
-<section id="sobre" class="py-0 bg-chalk overflow-hidden">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid lg:grid-cols-2 min-h-[520px]">
-
-      <!-- Coluna: Foto -->
-      <div class="relative overflow-hidden" style="min-height:360px;">
-        <img src="fachada.png"
-             alt="Fachada da loja Tudo em Incêndio — Rua Amélia Carneiro de Mendonça, 205, Tupi, BH"
-             class="absolute inset-0 w-full h-full object-cover object-center"
-             style="object-position: center 20%;" />
-        <!-- Overlay diagonal lateral direita -->
-        <div class="absolute inset-0 hidden lg:block"
-             style="background: linear-gradient(to right, transparent 70%, #FAFAFA 100%);"></div>
-        <!-- Tag de endereço flutuante -->
-        <div class="absolute bottom-6 left-6 bg-ink/85 backdrop-blur-sm text-white text-xs px-4 py-2.5 rounded-xl flex items-center gap-2">
-          <i class="fa-solid fa-location-dot text-fire"></i>
-          Tupi — Belo Horizonte, MG
-        </div>
-      </div>
-
-      <!-- Coluna: Texto -->
-      <div class="flex flex-col justify-center px-8 md:px-12 lg:px-14 py-16 reveal">
-        <span class="accent-bar block mb-1"></span>
-        <h2 class="section-title text-ink mb-5" style="font-size:clamp(2rem,3.8vw,3rem);">
-          Nossa Estrutura,<br>
-          <span class="text-fire">Sua Segurança</span>
-        </h2>
-        <p class="font-body text-ink-muted leading-relaxed mb-6 text-base">
-          Nossa sede no bairro Tupi, em Belo Horizonte, conta com estoque completo de equipamentos homologados e uma equipe técnica pronta para atender projetos de todos os portes — de pequenos comércios a grandes indústrias.
-        </p>
-        <p class="font-body text-ink-muted leading-relaxed mb-8 text-base">
-          Desde extintores até sistemas completos de hidrantes e sinalização de emergência, você encontra tudo em um só lugar, com a garantia de produtos certificados e suporte técnico especializado.
-        </p>
-
-        <!-- Chips de destaque -->
-        <div class="flex flex-wrap gap-3 mb-8">
-          <span class="inline-flex items-center gap-2 bg-chalk-dark border border-chalk-dark rounded-full px-4 py-1.5 text-sm font-medium text-ink">
-            <i class="fa-solid fa-boxes-stacked text-fire text-xs"></i> Estoque Completo
-          </span>
-          <span class="inline-flex items-center gap-2 bg-chalk-dark border border-chalk-dark rounded-full px-4 py-1.5 text-sm font-medium text-ink">
-            <i class="fa-solid fa-truck-fast text-fire text-xs"></i> Entrega em BH
-          </span>
-          <span class="inline-flex items-center gap-2 bg-chalk-dark border border-chalk-dark rounded-full px-4 py-1.5 text-sm font-medium text-ink">
-            <i class="fa-solid fa-headset text-fire text-xs"></i> Suporte Técnico
-          </span>
-        </div>
-
-        <div class="flex flex-wrap gap-3">
-          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+visitar+a+loja+ou+solicitar+um+or%C3%A7amento."
-             target="_blank" rel="noopener"
-             class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm">
-            <i class="fa-brands fa-whatsapp"></i> Falar com a Equipe
-          </a>
-          <a href="https://www.google.com/maps/search/?api=1&query=Rua+Am%C3%A9lia+Carneiro+de+Mendon%C3%A7a+205+Tupi+Belo+Horizonte+MG"
-             target="_blank" rel="noopener"
-             class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm border-2 border-ink/20 text-ink hover:border-fire hover:text-fire transition-all duration-200">
-            <i class="fa-solid fa-map-location-dot"></i> Como Chegar
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════
-     PRODUTOS
-═══════════════════════════════════════ -->
-<section id="produtos" class="py-24 bg-chalk-dark">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-
-    <!-- Header -->
-    <div class="text-center mb-16 reveal">
-      <div class="flex justify-center">
-        <span class="accent-bar"></span>
-      </div>
-      <h2 class="section-title text-ink mb-4" style="font-size:clamp(2.2rem,4.5vw,3.5rem);">
-        Produtos
-      </h2>
-      <p class="font-body text-ink-muted text-lg max-w-xl mx-auto">
-        Equipamentos certificados e homologados para proteção total do seu patrimônio e das pessoas.
-      </p>
-    </div>
-
-    <!-- Products Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-      <!-- Extintor -->
-      <div class="product-card bg-white rounded-2xl reveal">
-        <div class="product-img-wrap h-52">
-          <img src="extintor.png"
-               alt="Extintores de Incêndio"
-               class="w-full h-full object-cover" />
-        </div>
-        <div class="p-6">
-          <span class="text-xs font-semibold text-fire uppercase tracking-wider">Produto</span>
-          <h3 class="font-display font-700 text-xl text-ink mt-1 mb-2">Extintores de Incêndio</h3>
-          <p class="font-body text-ink-muted text-sm leading-relaxed mb-5">
-            PQS, CO₂, Água e Espuma. Todos certificados pelo INMETRO e prontos para uso imediato. Vários modelos e capacidades.
-          </p>
-          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento+para+Extintores+de+Inc%C3%AAndio."
-             target="_blank" rel="noopener"
-             class="btn-primary w-full text-center text-sm px-4 py-2.5 rounded-xl inline-flex items-center justify-center gap-2">
-            <i class="fa-brands fa-whatsapp"></i> Solicitar Orçamento
-          </a>
-        </div>
-      </div>
-
-      <!-- Hidrante - Abrigo -->
-      <div class="product-card bg-white rounded-2xl reveal" style="transition-delay:0.1s">
-        <div class="product-img-wrap h-52">
-          <img src="abrigo.png"
-               alt="Abrigo de Hidrante"
-               class="w-full h-full object-cover" />
-        </div>
-        <div class="p-6">
-          <span class="text-xs font-semibold text-fire uppercase tracking-wider">Componente</span>
-          <h3 class="font-display font-700 text-xl text-ink mt-1 mb-2">Abrigo de Hidrante</h3>
-          <p class="font-body text-ink-muted text-sm leading-relaxed mb-5">
-            Caixas de abrigo para hidrante em aço ou fibra, para instalação interna e externa. Completas e com acabamento premium.
-          </p>
-          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento+para+Abrigo+de+Hidrante."
-             target="_blank" rel="noopener"
-             class="btn-primary w-full text-center text-sm px-4 py-2.5 rounded-xl inline-flex items-center justify-center gap-2">
-            <i class="fa-brands fa-whatsapp"></i> Solicitar Orçamento
-          </a>
-        </div>
-      </div>
-
-      <!-- Mangueira -->
-      <div class="product-card bg-white rounded-2xl reveal" style="transition-delay:0.2s">
-        <div class="product-img-wrap h-52">
-          <img src="mangueira.png"
-               alt="Mangueira de Incêndio"
-               class="w-full h-full object-cover" />
-        </div>
-        <div class="p-6">
-          <span class="text-xs font-semibold text-fire uppercase tracking-wider">Componente</span>
-          <h3 class="font-display font-700 text-xl text-ink mt-1 mb-2">Mangueiras de Incêndio</h3>
-          <p class="font-body text-ink-muted text-sm leading-relaxed mb-5">
-            Mangueiras de poliéster e lona em diversos diâmetros e comprimentos. Alta pressão, resistência e durabilidade comprovada.
-          </p>
-          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento+para+Mangueiras+de+Inc%C3%AAndio."
-             target="_blank" rel="noopener"
-             class="btn-primary w-full text-center text-sm px-4 py-2.5 rounded-xl inline-flex items-center justify-center gap-2">
-            <i class="fa-brands fa-whatsapp"></i> Solicitar Orçamento
-          </a>
-        </div>
-      </div>
-
-      <!-- Esguicho -->
-      <div class="product-card bg-white rounded-2xl reveal" style="transition-delay:0.05s">
-        <div class="product-img-wrap h-52">
-          <img src="esguichos.png"
-               alt="Esguicho para Hidrante"
-               class="w-full h-full object-cover" />
-        </div>
-        <div class="p-6">
-          <span class="text-xs font-semibold text-fire uppercase tracking-wider">Componente</span>
-          <h3 class="font-display font-700 text-xl text-ink mt-1 mb-2">Esguichos</h3>
-          <p class="font-body text-ink-muted text-sm leading-relaxed mb-5">
-            Esguichos reguláveis e de jato sólido em alumínio fundido e latão. Compatíveis com mangueiras de 1½ e 2½ polegadas.
-          </p>
-          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento+para+Esguichos."
-             target="_blank" rel="noopener"
-             class="btn-primary w-full text-center text-sm px-4 py-2.5 rounded-xl inline-flex items-center justify-center gap-2">
-            <i class="fa-brands fa-whatsapp"></i> Solicitar Orçamento
-          </a>
-        </div>
-      </div>
-
-      <!-- Chave Storz / Adaptador -->
-      <div class="product-card bg-white rounded-2xl reveal" style="transition-delay:0.15s">
-        <div class="product-img-wrap h-52">
-          <img src="storz.png"
-               alt="Chave Storz e Adaptadores"
-               class="w-full h-full object-cover" />
-        </div>
-        <div class="p-6">
-          <span class="text-xs font-semibold text-fire uppercase tracking-wider">Acessório</span>
-          <h3 class="font-display font-700 text-xl text-ink mt-1 mb-2">Chave Storz & Adaptadores</h3>
-          <p class="font-body text-ink-muted text-sm leading-relaxed mb-5">
-            Chaves e adaptadores Storz em latão e alumínio para conexão rápida de mangueiras. Vários tamanhos disponíveis em estoque.
-          </p>
-          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento+para+Chave+Storz+e+Adaptadores."
-             target="_blank" rel="noopener"
-             class="btn-primary w-full text-center text-sm px-4 py-2.5 rounded-xl inline-flex items-center justify-center gap-2">
-            <i class="fa-brands fa-whatsapp"></i> Solicitar Orçamento
-          </a>
-        </div>
-      </div>
-
-      <!-- Placas de Sinalização -->
-      <div class="product-card bg-white rounded-2xl reveal" style="transition-delay:0.25s">
-        <div class="product-img-wrap h-52">
-          <img src="placas.png"
-               alt="Placas de Sinalização de Emergência"
-               class="w-full h-full object-cover" />
-        </div>
-        <div class="p-6">
-          <span class="text-xs font-semibold text-fire uppercase tracking-wider">Sinalização</span>
-          <h3 class="font-display font-700 text-xl text-ink mt-1 mb-2">Placas de Sinalização</h3>
-          <p class="font-body text-ink-muted text-sm leading-relaxed mb-5">
-            Placas fotoluminescentes de emergência e rota de fuga conforme ABNT NBR 13434. Saída de emergência, extintor, hidrante e muito mais.
-          </p>
-          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento+para+Placas+de+Sinaliza%C3%A7%C3%A3o+de+Emerg%C3%AAncia."
-             target="_blank" rel="noopener"
-             class="btn-primary w-full text-center text-sm px-4 py-2.5 rounded-xl inline-flex items-center justify-center gap-2">
-            <i class="fa-brands fa-whatsapp"></i> Solicitar Orçamento
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════
-     DIFERENCIAIS / SELOS
-═══════════════════════════════════════ -->
-<section class="py-20 bg-chalk">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-
-      <!-- Left text -->
-      <div class="reveal">
-        <span class="accent-bar block"></span>
-        <h2 class="section-title text-ink mb-5" style="font-size:clamp(2rem,4vw,3rem);">
-          Por que escolher a<br><span class="text-fire">Tudo em Incêndio?</span>
-        </h2>
-        <p class="font-body text-ink-muted leading-relaxed mb-8">
-          Somos uma empresa com DNA técnico e comprometimento total com a segurança dos nossos clientes. Trabalhamos com os melhores produtos do mercado e equipe qualificada para atender qualquer demanda.
-        </p>
-        <div class="space-y-4">
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-full bg-fire/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <i class="fa-solid fa-check text-fire text-sm"></i>
-            </div>
-            <div>
-              <p class="font-semibold text-ink text-sm">Atendimento Ágil</p>
-              <p class="text-ink-muted text-sm">Resposta rápida e equipe sempre disponível para urgências.</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-full bg-fire/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <i class="fa-solid fa-check text-fire text-sm"></i>
-            </div>
-            <div>
-              <p class="font-semibold text-ink text-sm">Responsabilidade Técnica</p>
-              <p class="text-ink-muted text-sm">Projetos assinados por profissionais habilitados no CREA-MG.</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-full bg-fire/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <i class="fa-solid fa-check text-fire text-sm"></i>
-            </div>
-            <div>
-              <p class="font-semibold text-ink text-sm">Produtos Certificados</p>
-              <p class="text-ink-muted text-sm">100% dos equipamentos com certificação INMETRO e conformidade ABNT.</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-full bg-fire/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <i class="fa-solid fa-check text-fire text-sm"></i>
-            </div>
-            <div>
-              <p class="font-semibold text-ink text-sm">Aprovação Garantida no CBMMG</p>
-              <p class="text-ink-muted text-sm">Vasta experiência em aprovações junto ao Corpo de Bombeiros de MG.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Seals -->
-      <div class="reveal" style="transition-delay:0.15s">
-        <div class="grid grid-cols-1 gap-4">
-
-          <div class="bg-ink rounded-2xl p-6 flex items-center gap-5">
-            <div class="w-16 h-16 bg-gold/10 border border-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <i class="fa-solid fa-certificate text-gold text-3xl"></i>
-            </div>
-            <div>
-              <h4 class="font-display font-700 text-white text-xl">Certificação INMETRO</h4>
-              <p class="text-white/60 text-sm mt-1">Todos os produtos comercializados possuem o selo do Instituto Nacional de Metrologia, Qualidade e Tecnologia.</p>
-            </div>
-          </div>
-
-          <div class="bg-ink rounded-2xl p-6 flex items-center gap-5">
-            <div class="w-16 h-16 bg-gold/10 border border-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <i class="fa-solid fa-award text-gold text-3xl"></i>
-            </div>
-            <div>
-              <h4 class="font-display font-700 text-white text-xl">Registro no CREA-MG</h4>
-              <p class="text-white/60 text-sm mt-1">Responsabilidade técnica assegurada por profissional registrado no Conselho Regional de Engenharia e Agronomia de MG.</p>
-            </div>
-          </div>
-
-          <div class="bg-ink rounded-2xl p-6 flex items-center gap-5">
-            <div class="w-16 h-16 bg-gold/10 border border-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <i class="fa-solid fa-fire-flame-curved text-gold text-3xl"></i>
-            </div>
-            <div>
-              <h4 class="font-display font-700 text-white text-xl">Credenciado CBMMG</h4>
-              <p class="text-white/60 text-sm mt-1">Empresa credenciada junto ao Corpo de Bombeiros Militar de Minas Gerais para projetos e serviços de prevenção.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════
-     CONTATO
-═══════════════════════════════════════ -->
-<section id="contato" class="py-24 bg-chalk-dark">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-
+<!-- ════════════════════════════════════
+     AVCB — CONVERSÃO
+════════════════════════════════════ -->
+<section class="dark-section py-24 overflow-hidden relative">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 50% 50%,rgba(230,0,0,0.09) 0%,transparent 70%);pointer-events:none;"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
     <div class="text-center mb-14 reveal">
-      <span class="accent-bar block mx-auto"></span>
-      <h2 class="section-title text-ink mb-4" style="font-size:clamp(2.2rem,4.5vw,3.5rem);">
-        Fale Conosco
-      </h2>
-      <p class="font-body text-ink-muted text-lg max-w-lg mx-auto">
-        Solicite um orçamento sem compromisso. Nossa equipe retorna rapidamente!
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-
-      <!-- WhatsApp -->
-      <a href="https://wa.me/5531991353168" target="_blank" rel="noopener"
-         class="bg-white rounded-2xl p-7 flex flex-col items-center text-center border border-chalk-dark hover:border-wa hover:shadow-lg transition-all duration-300 hover:-translate-y-1 reveal group">
-        <div class="w-14 h-14 bg-wa/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-wa transition-colors">
-          <i class="fa-brands fa-whatsapp text-wa group-hover:text-white text-2xl transition-colors"></i>
-        </div>
-        <h3 class="font-display font-700 text-ink text-lg mb-1">WhatsApp</h3>
-        <p class="text-ink-muted text-sm mb-3">Atendimento imediato</p>
-        <span class="text-fire font-semibold text-sm">(31) 99135-3168</span>
-      </a>
-
-      <!-- Telefone -->
-      <a href="tel:+553130174106"
-         class="bg-white rounded-2xl p-7 flex flex-col items-center text-center border border-chalk-dark hover:border-fire hover:shadow-lg transition-all duration-300 hover:-translate-y-1 reveal group" style="transition-delay:0.1s">
-        <div class="w-14 h-14 bg-fire/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-fire transition-colors">
-          <i class="fa-solid fa-phone text-fire group-hover:text-white text-2xl transition-colors"></i>
-        </div>
-        <h3 class="font-display font-700 text-ink text-lg mb-1">Telefone Fixo</h3>
-        <p class="text-ink-muted text-sm mb-3">Comercial · Seg–Sex</p>
-        <span class="text-fire font-semibold text-sm">(31) 3017-4106</span>
-      </a>
-
-      <!-- E-mail -->
-      <a href="mailto:tudoemincendio@gmail.com"
-         class="bg-white rounded-2xl p-7 flex flex-col items-center text-center border border-chalk-dark hover:border-ink hover:shadow-lg transition-all duration-300 hover:-translate-y-1 reveal group" style="transition-delay:0.2s">
-        <div class="w-14 h-14 bg-ink/5 rounded-full flex items-center justify-center mb-4 group-hover:bg-ink transition-colors">
-          <i class="fa-solid fa-envelope text-ink group-hover:text-white text-2xl transition-colors"></i>
-        </div>
-        <h3 class="font-display font-700 text-ink text-lg mb-1">E-mail</h3>
-        <p class="text-ink-muted text-sm mb-3">Resposta em até 24h</p>
-        <span class="text-fire font-semibold text-sm break-all">tudoemincendio@gmail.com</span>
-      </a>
-
-    </div>
-
-    <!-- Endereço -->
-    <div class="mt-8 bg-white rounded-2xl p-7 flex flex-col sm:flex-row items-start sm:items-center gap-5 border border-chalk-dark reveal">
-      <div class="w-14 h-14 bg-fire/10 rounded-full flex items-center justify-center flex-shrink-0">
-        <i class="fa-solid fa-location-dot text-fire text-2xl"></i>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(230,0,0,0.1);border:1px solid rgba(230,0,0,0.22);border-radius:100px;padding:6px 16px;margin-bottom:18px;">
+        <i class="fa-solid fa-triangle-exclamation" style="color:#E60000;font-size:.8rem;"></i>
+        <span style="color:#E60000;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;">Você sabia?</span>
       </div>
-      <div>
-        <h3 class="font-display font-700 text-ink text-lg mb-0.5">Nosso Endereço</h3>
-        <p class="text-ink-muted text-sm">
-          Rua Amélia Carneiro de Mendonça, 205 — Tupi, Belo Horizonte / MG — CEP 31844-040
-        </p>
-      </div>
-      <a href="https://www.google.com/maps/search/?api=1&query=Rua+Am%C3%A9lia+Carneiro+de+Mendon%C3%A7a+205+Tupi+Belo+Horizonte+MG"
-         target="_blank" rel="noopener"
-         class="sm:ml-auto flex-shrink-0 btn-primary text-sm px-5 py-2.5 rounded-full inline-flex items-center gap-2">
-        <i class="fa-solid fa-map-location-dot"></i> Ver no Mapa
+      <h2 class="sec-h2-w" style="margin-bottom:12px;">Por que regularizar o <span class="gradient-text">AVCB</span>?</h2>
+      <p style="color:rgba(255,255,255,.4);font-size:1.0625rem;max-width:500px;margin:0 auto;line-height:1.7;">O Auto de Vistoria do Corpo de Bombeiros é obrigatório e protege sua empresa de multas, interdições e riscos graves.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(1,1fr);gap:12px;" class="reveal" id="avcb-grid">
+      <div class="avcb-pt"><div class="avcb-ico"><i class="fa-solid fa-shield-halved" style="color:#E60000;font-size:.9rem;"></i></div><div><p style="color:#fff;font-weight:600;font-size:.875rem;margin-bottom:4px;">Previne Acidentes</p><p style="color:rgba(255,255,255,.4);font-size:.8125rem;line-height:1.6;">Verificação e manutenção obrigatória de todos os equipamentos de segurança.</p></div></div>
+      <div class="avcb-pt" style="transition-delay:.05s"><div class="avcb-ico"><i class="fa-solid fa-gavel" style="color:#E60000;font-size:.9rem;"></i></div><div><p style="color:#fff;font-weight:600;font-size:.875rem;margin-bottom:4px;">Evita Penalidades</p><p style="color:rgba(255,255,255,.4);font-size:.8125rem;line-height:1.6;">Protege contra multas, interdições e problemas com as autoridades fiscais.</p></div></div>
+      <div class="avcb-pt" style="transition-delay:.1s"><div class="avcb-ico"><i class="fa-solid fa-scale-balanced" style="color:#E60000;font-size:.9rem;"></i></div><div><p style="color:#fff;font-weight:600;font-size:.875rem;margin-bottom:4px;">Segurança Jurídica</p><p style="color:rgba(255,255,255,.4);font-size:.8125rem;line-height:1.6;">Proteção legal em caso de acidentes e conflitos com seguradoras.</p></div></div>
+      <div class="avcb-pt" style="transition-delay:.15s"><div class="avcb-ico"><i class="fa-solid fa-store" style="color:#E60000;font-size:.9rem;"></i></div><div><p style="color:#fff;font-weight:600;font-size:.875rem;margin-bottom:4px;">Facilita Alvarás</p><p style="color:rgba(255,255,255,.4);font-size:.8125rem;line-height:1.6;">Requisito para obtenção de alvarás de funcionamento e renovação de contratos.</p></div></div>
+      <div class="avcb-pt" style="transition-delay:.2s"><div class="avcb-ico"><i class="fa-solid fa-chart-line" style="color:#E60000;font-size:.9rem;"></i></div><div><p style="color:#fff;font-weight:600;font-size:.875rem;margin-bottom:4px;">Valoriza o Imóvel</p><p style="color:rgba(255,255,255,.4);font-size:.8125rem;line-height:1.6;">Aumenta o valor de mercado e oferece segurança para comercialização e aluguel.</p></div></div>
+      <div class="avcb-pt" style="transition-delay:.25s"><div class="avcb-ico"><i class="fa-solid fa-star" style="color:#E60000;font-size:.9rem;"></i></div><div><p style="color:#fff;font-weight:600;font-size:.875rem;margin-bottom:4px;">Credibilidade</p><p style="color:rgba(255,255,255,.4);font-size:.8125rem;line-height:1.6;">Reforça a imagem do estabelecimento como responsável com a segurança de todos.</p></div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px;" class="reveal">
+      <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+preciso+regularizar+meu+AVCB.+Podem+me+ajudar%3F" target="_blank" rel="noopener" class="btn-fire" style="display:inline-flex;">
+        <i class="fa-brands fa-whatsapp" style="font-size:1rem;"></i> Regularizar Meu AVCB Agora
       </a>
     </div>
+  </div>
+</section>
+<style>
+  @media(min-width:640px){#avcb-grid{grid-template-columns:repeat(2,1fr)!important;}}
+  @media(min-width:1024px){#avcb-grid{grid-template-columns:repeat(3,1fr)!important;}}
+</style>
 
+<!-- ════════════════════════════════════
+     QUEM SOMOS + VALORES
+════════════════════════════════════ -->
+<section id="sobre" class="page-section overflow-hidden">
+  <div class="max-w-7xl mx-auto">
+    <div style="display:grid;grid-template-columns:1fr;" id="sobre-grid">
+      <!-- Foto -->
+      <div style="position:relative;overflow:hidden;min-height:380px;">
+        <img src="fachada.png" alt="Fachada Tudo em Incêndio — Tupi, BH"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 65%,rgba(8,8,8,0.25) 100%);"></div>
+        <div style="position:absolute;bottom:22px;left:22px;background:rgba(8,8,8,0.72);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:9px 16px;display:inline-flex;align-items:center;gap:8px;">
+          <i class="fa-solid fa-location-dot" style="color:#E60000;font-size:.875rem;"></i>
+          <span style="color:#fff;font-size:.75rem;font-weight:500;">Tupi — Belo Horizonte, MG</span>
+        </div>
+      </div>
+      <!-- Texto -->
+      <div style="display:flex;flex-direction:column;justify-content:center;padding:56px 40px;" class="reveal">
+        <p class="sec-eye" style="margin-bottom:10px;">Nossa Estrutura</p>
+        <h2 class="sec-h2" style="margin-bottom:18px;">Sua Segurança<br><span class="gradient-text">É Nossa Missão</span></h2>
+        <p style="color:var(--text-muted);line-height:1.75;margin-bottom:14px;font-size:.9375rem;">Nossa sede no bairro Tupi conta com estoque completo de equipamentos homologados e equipe técnica pronta para atender projetos de todos os portes.</p>
+        <p style="color:var(--text-muted);line-height:1.75;margin-bottom:28px;font-size:.9375rem;">Desde extintores até sistemas completos de hidrantes e sinalização, você encontra tudo em um só lugar com suporte técnico especializado.</p>
+        <!-- Valores -->
+        <div style="margin-bottom:24px;">
+          <p style="font-size:.7rem;font-weight:600;color:var(--text-muted2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;">Nossos Valores</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="valor-chip"><span class="vdot"></span>Segurança</span>
+            <span class="valor-chip"><span class="vdot"></span>Qualidade</span>
+            <span class="valor-chip"><span class="vdot"></span>Integridade</span>
+            <span class="valor-chip"><span class="vdot"></span>Comprometimento</span>
+            <span class="valor-chip"><span class="vdot"></span>Inovação</span>
+          </div>
+        </div>
+        <!-- Chips -->
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;">
+          <div style="display:inline-flex;align-items:center;gap:7px;padding:7px 15px;background:var(--bg-mid);border:1px solid var(--border-card);border-radius:100px;font-size:.8125rem;font-weight:500;color:var(--text-main);">
+            <i class="fa-solid fa-boxes-stacked" style="color:#E60000;font-size:.7rem;"></i> Estoque Completo
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:7px;padding:7px 15px;background:var(--bg-mid);border:1px solid var(--border-card);border-radius:100px;font-size:.8125rem;font-weight:500;color:var(--text-main);">
+            <i class="fa-solid fa-truck-fast" style="color:#E60000;font-size:.7rem;"></i> Entrega em BH
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:7px;padding:7px 15px;background:var(--bg-mid);border:1px solid var(--border-card);border-radius:100px;font-size:.8125rem;font-weight:500;color:var(--text-main);">
+            <i class="fa-solid fa-headset" style="color:#E60000;font-size:.7rem;"></i> Suporte Técnico
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;">
+          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+visitar+a+loja+ou+solicitar+um+or%C3%A7amento." target="_blank" rel="noopener" class="btn-fire">
+            <i class="fa-brands fa-whatsapp" style="font-size:1rem;"></i> Falar com a Equipe
+          </a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Rua+Am%C3%A9lia+Carneiro+de+Mendon%C3%A7a+205+Tupi+Belo+Horizonte+MG" target="_blank" rel="noopener" class="btn-ghost-dark">
+            <i class="fa-solid fa-map-location-dot" style="font-size:.875rem;"></i> Como Chegar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  @media(min-width:1024px){#sobre-grid{grid-template-columns:1fr 1fr!important;min-height:580px;}}
+  @media(min-width:1024px){#sobre-grid > div:first-child .fade-r{display:block!important;}}
+</style>
+
+<!-- ════════════════════════════════════
+     PRODUTOS
+════════════════════════════════════ -->
+<section id="produtos" class="mid-section py-24">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-14 reveal">
+      <p class="sec-eye" style="margin-bottom:10px;">Catálogo</p>
+      <h2 class="sec-h2">Nossos Produtos</h2>
+      <p style="color:var(--text-muted);font-size:1.0625rem;margin-top:14px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7;">Equipamentos certificados e homologados para proteção total do seu patrimônio.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(1,1fr);gap:18px;" id="prod-grid">
+      <!-- Extintor -->
+      <div class="product-card reveal">
+        <div class="product-img-wrap" style="height:210px;"><img src="extintor.png" alt="Extintores de Incêndio" /></div>
+        <div style="padding:22px;position:relative;z-index:1;">
+          <span style="font-size:.7rem;font-weight:600;color:#E60000;text-transform:uppercase;letter-spacing:.1em;">Produto</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:var(--text-main);margin:4px 0 8px;line-height:1.1;">Extintores de Incêndio</h3>
+          <p style="color:var(--text-muted);font-size:.8125rem;line-height:1.65;margin-bottom:18px;">PQS, CO₂, Água e Espuma. Certificados INMETRO, vários modelos e capacidades.</p>
+          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento+para+Extintores+de+Inc%C3%AAndio." target="_blank" rel="noopener" class="btn-fire" style="width:100%;justify-content:center;border-radius:12px;padding:11px 20px;">
+            <i class="fa-brands fa-whatsapp" style="font-size:.95rem;"></i> Solicitar Orçamento
+          </a>
+        </div>
+      </div>
+      <!-- Abrigo -->
+      <div class="product-card reveal" style="transition-delay:.07s">
+        <div class="product-img-wrap" style="height:210px;"><img src="abrigo.png" alt="Abrigo de Hidrante" /></div>
+        <div style="padding:22px;position:relative;z-index:1;">
+          <span style="font-size:.7rem;font-weight:600;color:#E60000;text-transform:uppercase;letter-spacing:.1em;">Componente</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:var(--text-main);margin:4px 0 8px;line-height:1.1;">Abrigo de Hidrante</h3>
+          <p style="color:var(--text-muted);font-size:.8125rem;line-height:1.65;margin-bottom:18px;">Aço ou fibra para instalação interna e externa. Acabamento premium.</p>
+          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento+para+Abrigo+de+Hidrante." target="_blank" rel="noopener" class="btn-fire" style="width:100%;justify-content:center;border-radius:12px;padding:11px 20px;">
+            <i class="fa-brands fa-whatsapp" style="font-size:.95rem;"></i> Solicitar Orçamento
+          </a>
+        </div>
+      </div>
+      <!-- Mangueira -->
+      <div class="product-card reveal" style="transition-delay:.14s">
+        <div class="product-img-wrap" style="height:210px;"><img src="mangueira.png" alt="Mangueiras de Incêndio" /></div>
+        <div style="padding:22px;position:relative;z-index:1;">
+          <span style="font-size:.7rem;font-weight:600;color:#E60000;text-transform:uppercase;letter-spacing:.1em;">Componente</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:var(--text-main);margin:4px 0 8px;line-height:1.1;">Mangueiras de Incêndio</h3>
+          <p style="color:var(--text-muted);font-size:.8125rem;line-height:1.65;margin-bottom:18px;">Poliéster e lona, vários diâmetros. Alta pressão e durabilidade comprovada.</p>
+          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento+para+Mangueiras+de+Inc%C3%AAndio." target="_blank" rel="noopener" class="btn-fire" style="width:100%;justify-content:center;border-radius:12px;padding:11px 20px;">
+            <i class="fa-brands fa-whatsapp" style="font-size:.95rem;"></i> Solicitar Orçamento
+          </a>
+        </div>
+      </div>
+      <!-- Esguichos -->
+      <div class="product-card reveal" style="transition-delay:.04s">
+        <div class="product-img-wrap" style="height:210px;"><img src="esguichos.png" alt="Esguichos" /></div>
+        <div style="padding:22px;position:relative;z-index:1;">
+          <span style="font-size:.7rem;font-weight:600;color:#E60000;text-transform:uppercase;letter-spacing:.1em;">Componente</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:var(--text-main);margin:4px 0 8px;line-height:1.1;">Esguichos</h3>
+          <p style="color:var(--text-muted);font-size:.8125rem;line-height:1.65;margin-bottom:18px;">Reguláveis, alumínio e latão. Compatíveis com 1½ e 2½ polegadas.</p>
+          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento+para+Esguichos." target="_blank" rel="noopener" class="btn-fire" style="width:100%;justify-content:center;border-radius:12px;padding:11px 20px;">
+            <i class="fa-brands fa-whatsapp" style="font-size:.95rem;"></i> Solicitar Orçamento
+          </a>
+        </div>
+      </div>
+      <!-- Storz -->
+      <div class="product-card reveal" style="transition-delay:.11s">
+        <div class="product-img-wrap" style="height:210px;"><img src="storz.png" alt="Chave Storz e Adaptadores" /></div>
+        <div style="padding:22px;position:relative;z-index:1;">
+          <span style="font-size:.7rem;font-weight:600;color:#E60000;text-transform:uppercase;letter-spacing:.1em;">Acessório</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:var(--text-main);margin:4px 0 8px;line-height:1.1;">Chave Storz & Adaptadores</h3>
+          <p style="color:var(--text-muted);font-size:.8125rem;line-height:1.65;margin-bottom:18px;">Latão e alumínio para conexão rápida. Vários tamanhos em estoque.</p>
+          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento+para+Chave+Storz+e+Adaptadores." target="_blank" rel="noopener" class="btn-fire" style="width:100%;justify-content:center;border-radius:12px;padding:11px 20px;">
+            <i class="fa-brands fa-whatsapp" style="font-size:.95rem;"></i> Solicitar Orçamento
+          </a>
+        </div>
+      </div>
+      <!-- Placas -->
+      <div class="product-card reveal" style="transition-delay:.18s">
+        <div class="product-img-wrap" style="height:210px;"><img src="placas.png" alt="Placas de Sinalização de Emergência" /></div>
+        <div style="padding:22px;position:relative;z-index:1;">
+          <span style="font-size:.7rem;font-weight:600;color:#E60000;text-transform:uppercase;letter-spacing:.1em;">Sinalização</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:var(--text-main);margin:4px 0 8px;line-height:1.1;">Placas de Sinalização</h3>
+          <p style="color:var(--text-muted);font-size:.8125rem;line-height:1.65;margin-bottom:18px;">Fotoluminescentes conforme ABNT NBR 13434. Saída, extintor, hidrante e mais.</p>
+          <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento+para+Placas+de+Sinaliza%C3%A7%C3%A3o+de+Emerg%C3%AAncia." target="_blank" rel="noopener" class="btn-fire" style="width:100%;justify-content:center;border-radius:12px;padding:11px 20px;">
+            <i class="fa-brands fa-whatsapp" style="font-size:.95rem;"></i> Solicitar Orçamento
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  @media(min-width:640px){#prod-grid{grid-template-columns:repeat(2,1fr)!important;}}
+  @media(min-width:1024px){#prod-grid{grid-template-columns:repeat(3,1fr)!important;}}
+</style>
+
+<!-- ════════════════════════════════════
+     TIPOS DE EXTINTOR — ACCORDION
+════════════════════════════════════ -->
+<section class="page-section py-20">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8">
+    <div style="display:grid;grid-template-columns:1fr;gap:48px;align-items:start;" id="acc-grid">
+      <div class="reveal">
+        <p class="sec-eye" style="margin-bottom:10px;">Guia Técnico</p>
+        <h2 class="sec-h2" style="margin-bottom:14px;">Qual extintor<br>você precisa?</h2>
+        <p style="color:var(--text-muted);line-height:1.75;margin-bottom:24px;font-size:.9375rem;">Cada tipo de incêndio exige um agente extintor específico. Escolher errado pode ser ineficaz ou perigoso. Consulte nosso time gratuitamente.</p>
+        <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+preciso+de+ajuda+para+escolher+o+extintor+certo." target="_blank" rel="noopener" class="btn-fire" style="display:inline-flex;">
+          <i class="fa-brands fa-whatsapp" style="font-size:1rem;"></i> Consultoria Gratuita
+        </a>
+      </div>
+      <div class="reveal" style="transition-delay:.1s;">
+        <div class="acc-item">
+          <button class="acc-btn" aria-expanded="false" data-acc>
+            <span style="display:flex;align-items:center;gap:12px;">
+              <span style="width:28px;height:28px;background:#dcfce7;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#15803d;flex-shrink:0;">A</span>
+              Classe A — Sólidos Combustíveis
+            </span>
+            <span class="acc-icon"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner"><p style="color:var(--text-muted);font-size:.875rem;line-height:1.65;margin-bottom:10px;">Papel, madeira, plástico, borracha e tecido.</p><div style="display:flex;flex-wrap:wrap;gap:6px;"><span class="ext-chip">💧 Água</span><span class="ext-chip">🧯 PQS ABC</span><span class="ext-chip">🫧 Espuma</span></div></div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" aria-expanded="false" data-acc>
+            <span style="display:flex;align-items:center;gap:12px;">
+              <span style="width:28px;height:28px;background:#fef9c3;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#854d0e;flex-shrink:0;">B</span>
+              Classe B — Líquidos Inflamáveis
+            </span>
+            <span class="acc-icon"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner"><p style="color:var(--text-muted);font-size:.875rem;line-height:1.65;margin-bottom:10px;">Gasolina, óleo, graxa, querosene e tintas. Nunca use água.</p><div style="display:flex;flex-wrap:wrap;gap:6px;"><span class="ext-chip">🧯 PQS BC/ABC</span><span class="ext-chip">❄️ CO₂</span><span class="ext-chip">🫧 Espuma</span></div></div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" aria-expanded="false" data-acc>
+            <span style="display:flex;align-items:center;gap:12px;">
+              <span style="width:28px;height:28px;background:#dbeafe;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#1d4ed8;flex-shrink:0;">C</span>
+              Classe C — Equipamentos Elétricos
+            </span>
+            <span class="acc-icon"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner"><p style="color:var(--text-muted);font-size:.875rem;line-height:1.65;margin-bottom:10px;">Equipamentos elétricos energizados. Exige agente não condutor.</p><div style="display:flex;flex-wrap:wrap;gap:6px;"><span class="ext-chip">❄️ CO₂</span><span class="ext-chip">🧯 PQS ABC/BC</span></div></div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" aria-expanded="false" data-acc>
+            <span style="display:flex;align-items:center;gap:12px;">
+              <span style="width:28px;height:28px;background:#fce7f3;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#9d174d;flex-shrink:0;">D</span>
+              Classe D — Metais Combustíveis
+            </span>
+            <span class="acc-icon"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner"><p style="color:var(--text-muted);font-size:.875rem;line-height:1.65;margin-bottom:10px;">Magnésio, titânio, sódio — uso industrial especializado.</p><div style="display:flex;flex-wrap:wrap;gap:6px;"><span class="ext-chip">🧯 Pó Especial Classe D</span></div></div></div>
+        </div>
+        <div class="acc-item" style="border-bottom:none;">
+          <button class="acc-btn" aria-expanded="false" data-acc>
+            <span style="display:flex;align-items:center;gap:12px;">
+              <span style="width:28px;height:28px;background:#f0fdf4;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#166534;flex-shrink:0;">K</span>
+              Classe K — Cozinhas Comerciais
+            </span>
+            <span class="acc-icon"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner"><p style="color:var(--text-muted);font-size:.875rem;line-height:1.65;margin-bottom:10px;">Óleos e gorduras vegetais/animais em frigoríficos e restaurantes.</p><div style="display:flex;flex-wrap:wrap;gap:6px;"><span class="ext-chip">🧪 Agente Úmido Classe K</span></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>@media(min-width:768px){#acc-grid{grid-template-columns:1fr 1fr!important;}}</style>
+
+<!-- ════════════════════════════════════
+     DIFERENCIAIS — BENTO DARK
+════════════════════════════════════ -->
+<section class="dark-section py-24 overflow-hidden">
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 50% at 80% 50%,rgba(230,0,0,0.07) 0%,transparent 65%);"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
+    <div style="margin-bottom:48px;" class="reveal">
+      <p class="sec-eye" style="margin-bottom:10px;">Diferenciais</p>
+      <h2 class="sec-h2-w">Por que escolher a<br><span class="gradient-text">Tudo em Incêndio?</span></h2>
+    </div>
+    <div class="bento-diff reveal">
+      <!-- Texto principal -->
+      <div class="bd-1 bento-dark" style="padding:36px 40px;">
+        <p style="color:rgba(255,255,255,.35);font-size:.9375rem;line-height:1.75;max-width:420px;margin-bottom:30px;">Empresa com DNA técnico e comprometimento total com a segurança dos clientes. Trabalhamos com os melhores produtos do mercado.</p>
+        <div style="display:flex;flex-direction:column;gap:18px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;"><div style="width:30px;height:30px;border-radius:50%;background:rgba(230,0,0,0.12);border:1px solid rgba(230,0,0,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><i class="fa-solid fa-check" style="color:#E60000;font-size:.65rem;"></i></div><div><p style="color:#fff;font-weight:600;font-size:.875rem;margin-bottom:3px;">Atendimento Ágil</p><p style="color:rgba(255,255,255,.38);font-size:.8125rem;line-height:1.6;">Resposta rápida e equipe disponível para urgências.</p></div></div>
+          <div style="display:flex;align-items:flex-start;gap:12px;"><div style="width:30px;height:30px;border-radius:50%;background:rgba(230,0,0,0.12);border:1px solid rgba(230,0,0,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><i class="fa-solid fa-check" style="color:#E60000;font-size:.65rem;"></i></div><div><p style="color:#fff;font-weight:600;font-size:.875rem;margin-bottom:3px;">Responsabilidade Técnica</p><p style="color:rgba(255,255,255,.38);font-size:.8125rem;line-height:1.6;">Projetos assinados por profissionais habilitados no CREA-MG.</p></div></div>
+          <div style="display:flex;align-items:flex-start;gap:12px;"><div style="width:30px;height:30px;border-radius:50%;background:rgba(230,0,0,0.12);border:1px solid rgba(230,0,0,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><i class="fa-solid fa-check" style="color:#E60000;font-size:.65rem;"></i></div><div><p style="color:#fff;font-weight:600;font-size:.875rem;margin-bottom:3px;">Produtos Certificados</p><p style="color:rgba(255,255,255,.38);font-size:.8125rem;line-height:1.6;">100% dos equipamentos com certificação INMETRO e conformidade ABNT.</p></div></div>
+          <div style="display:flex;align-items:flex-start;gap:12px;"><div style="width:30px;height:30px;border-radius:50%;background:rgba(230,0,0,0.12);border:1px solid rgba(230,0,0,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><i class="fa-solid fa-check" style="color:#E60000;font-size:.65rem;"></i></div><div><p style="color:#fff;font-weight:600;font-size:.875rem;margin-bottom:3px;">Aprovação Garantida no CBMMG</p><p style="color:rgba(255,255,255,.38);font-size:.8125rem;line-height:1.6;">Vasta experiência em aprovações junto ao Corpo de Bombeiros de MG.</p></div></div>
+        </div>
+      </div>
+      <!-- Selos -->
+      <div class="bd-2 seal-card"><div style="width:56px;height:56px;background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-certificate" style="color:#C8A84B;font-size:1.5rem;"></i></div><div><h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#fff;letter-spacing:-.01em;">INMETRO</h4><p style="color:rgba(255,255,255,.35);font-size:.8125rem;margin-top:4px;line-height:1.5;">Certificação do Instituto Nacional de Metrologia.</p></div></div>
+      <div class="bd-3 seal-card"><div style="width:56px;height:56px;background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-award" style="color:#C8A84B;font-size:1.5rem;"></i></div><div><h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#fff;letter-spacing:-.01em;">CREA-MG</h4><p style="color:rgba(255,255,255,.35);font-size:.8125rem;margin-top:4px;line-height:1.5;">Profissional registrado no Conselho Regional de Engenharia.</p></div></div>
+      <div class="bd-4 seal-card"><div style="width:56px;height:56px;background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.18);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-fire-flame-curved" style="color:#C8A84B;font-size:1.5rem;"></i></div><div><h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#fff;letter-spacing:-.01em;">CBMMG</h4><p style="color:rgba(255,255,255,.35);font-size:.8125rem;margin-top:4px;line-height:1.5;">Credenciados no Corpo de Bombeiros Militar de MG.</p></div></div>
+      <!-- CTA card -->
+      <div class="bd-5" style="background:linear-gradient(135deg,#E60000 0%,#B50000 100%);border-radius:20px;padding:28px 30px;display:flex;flex-direction:column;justify-content:space-between;min-height:160px;">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.6rem;color:#fff;line-height:1.05;letter-spacing:-.01em;">Orçamento rápido e sem compromisso?</p>
+        <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento." target="_blank" rel="noopener"
+           style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;background:#fff;color:#E60000;font-weight:600;font-size:.8125rem;padding:11px 20px;border-radius:100px;width:fit-content;transition:transform .2s,box-shadow .2s;text-decoration:none;"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.2)'"
+           onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <i class="fa-brands fa-whatsapp" style="font-size:1rem;color:#25D366;"></i> Solicitar Agora
+        </a>
+      </div>
+      <div class="bd-6" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:28px 30px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px;">
+        <i class="fa-solid fa-phone-volume" style="color:#E60000;font-size:1.6rem;"></i>
+        <div>
+          <p style="color:#fff;font-weight:600;font-size:.9375rem;margin-bottom:6px;">Prefere ligar?</p>
+          <a href="tel:+553130174106" style="color:#E60000;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:-.01em;text-decoration:none;">(31) 3017-4106</a>
+          <p style="color:rgba(255,255,255,.3);font-size:.75rem;margin-top:4px;">Seg–Sex · Comercial</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════ -->
-<footer class="bg-ink text-white pt-16 pb-8">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-
-      <!-- Col 1: Sobre -->
-      <div>
-        <!-- Logo fallback text -->
-        <div class="flex items-center gap-2 mb-5">
-          <div class="w-9 h-9 bg-fire rounded-lg flex items-center justify-center">
-            <i class="fa-solid fa-fire-extinguisher text-white text-lg"></i>
-          </div>
-          <div class="leading-tight">
-            <p class="font-display font-800 text-base tracking-tight text-white uppercase">TUDO EM INCÊNDIO</p>
-          </div>
-        </div>
-        <div class="red-divider mb-4"></div>
-        <p class="text-white/55 text-sm leading-relaxed mb-3">
-          <strong class="text-white/80">Missão:</strong> Oferecer soluções completas em segurança contra incêndio com qualidade, ética e responsabilidade técnica.
-        </p>
-        <p class="text-white/55 text-sm leading-relaxed">
-          <strong class="text-white/80">Visão:</strong> Ser referência em Minas Gerais no fornecimento de equipamentos e projetos de prevenção de incêndio.
-        </p>
-      </div>
-
-      <!-- Col 2: Links Rápidos -->
-      <div>
-        <h4 class="font-display font-700 text-base text-white uppercase tracking-wider mb-4">Links Rápidos</h4>
-        <div class="red-divider mb-4"></div>
-        <ul class="space-y-2.5">
-          <li><a href="#home"     class="footer-link text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-right text-fire text-xs"></i>Home</a></li>
-          <li><a href="#servicos" class="footer-link text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-right text-fire text-xs"></i>Serviços</a></li>
-          <li><a href="#produtos" class="footer-link text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-right text-fire text-xs"></i>Produtos</a></li>
-          <li><a href="#contato"  class="footer-link text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-right text-fire text-xs"></i>Contato</a></li>
-          <li>
-            <a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento."
-               target="_blank" rel="noopener"
-               class="footer-link text-sm flex items-center gap-2">
-              <i class="fa-solid fa-chevron-right text-fire text-xs"></i>Solicitar Orçamento
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Col 3: Contatos -->
-      <div>
-        <h4 class="font-display font-700 text-base text-white uppercase tracking-wider mb-4">Contatos</h4>
-        <div class="red-divider mb-4"></div>
-        <ul class="space-y-3">
-          <li>
-            <a href="https://wa.me/5531991353168" target="_blank" rel="noopener"
-               class="footer-link text-sm flex items-start gap-3">
-              <i class="fa-brands fa-whatsapp text-wa text-base mt-0.5 flex-shrink-0"></i>
-              <span>(31) 99135-3168 <span class="text-white/35 text-xs block">WhatsApp</span></span>
-            </a>
-          </li>
-          <li>
-            <a href="tel:+553130174106" class="footer-link text-sm flex items-start gap-3">
-              <i class="fa-solid fa-phone text-fire text-base mt-0.5 flex-shrink-0"></i>
-              <span>(31) 3017-4106 <span class="text-white/35 text-xs block">Telefone Fixo</span></span>
-            </a>
-          </li>
-          <li>
-            <a href="mailto:tudoemincendio@gmail.com" class="footer-link text-sm flex items-start gap-3">
-              <i class="fa-solid fa-envelope text-fire text-base mt-0.5 flex-shrink-0"></i>
-              <span class="break-all">tudoemincendio@gmail.com</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Col 4: Endereço + Redes -->
-      <div>
-        <h4 class="font-display font-700 text-base text-white uppercase tracking-wider mb-4">Localização</h4>
-        <div class="red-divider mb-4"></div>
-        <p class="text-white/55 text-sm leading-relaxed mb-6">
-          <i class="fa-solid fa-location-dot text-fire mr-2"></i>
-          Rua Amélia Carneiro de Mendonça, 205<br>
-          Tupi — Belo Horizonte / MG<br>
-          CEP: 31844-040
-        </p>
-        <h4 class="font-display font-700 text-sm text-white uppercase tracking-wider mb-3">Redes Sociais</h4>
-        <div class="flex gap-3">
-          <a href="https://www.instagram.com/tudoemincendio/" target="_blank" rel="noopener"
-             class="w-10 h-10 bg-white/5 hover:bg-fire rounded-lg flex items-center justify-center transition-colors duration-200"
-             aria-label="Instagram">
-            <i class="fa-brands fa-instagram text-white text-lg"></i>
-          </a>
-          <a href="https://wa.me/5531991353168" target="_blank" rel="noopener"
-             class="w-10 h-10 bg-white/5 hover:bg-wa rounded-lg flex items-center justify-center transition-colors duration-200"
-             aria-label="WhatsApp">
-            <i class="fa-brands fa-whatsapp text-white text-lg"></i>
-          </a>
-        </div>
-      </div>
-
+<!-- ════════════════════════════════════
+     CONTATO
+════════════════════════════════════ -->
+<section id="contato" class="page-section py-24">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center reveal" style="margin-bottom:48px;">
+      <p class="sec-eye" style="margin-bottom:10px;">Fale Conosco</p>
+      <h2 class="sec-h2">Solicite seu Orçamento</h2>
+      <p style="color:var(--text-muted);font-size:1.0625rem;margin-top:14px;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.7;">Sem compromisso. Nossa equipe retorna rapidamente com a melhor solução.</p>
     </div>
-
-    <!-- Bottom bar -->
-    <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <p class="text-white/35 text-xs text-center sm:text-left">
-        © 2025 Tudo em Incêndio · Todos os direitos reservados.
-      </p>
-      <div class="flex items-center gap-4">
-        <span class="flex items-center gap-1.5 text-white/35 text-xs">
-          <i class="fa-solid fa-certificate text-gold text-sm"></i> INMETRO
-        </span>
-        <span class="flex items-center gap-1.5 text-white/35 text-xs">
-          <i class="fa-solid fa-award text-gold text-sm"></i> CREA
-        </span>
-        <span class="flex items-center gap-1.5 text-white/35 text-xs">
-          <i class="fa-solid fa-fire-flame-curved text-gold text-sm"></i> CBMMG
-        </span>
-      </div>
+    <div style="display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:14px;" id="contact-grid">
+      <a href="https://wa.me/5531991353168" target="_blank" rel="noopener" class="contact-card reveal group">
+        <div style="width:52px;height:52px;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.15);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;transition:background .3s;"><i class="fa-brands fa-whatsapp" style="color:#25D366;font-size:1.4rem;"></i></div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:var(--text-main);margin-bottom:4px;">WhatsApp</h3>
+        <p style="color:var(--text-muted);font-size:.8125rem;margin-bottom:10px;">Atendimento imediato</p>
+        <span style="color:#E60000;font-weight:600;font-size:.875rem;">(31) 99135-3168</span>
+      </a>
+      <a href="tel:+553130174106" class="contact-card reveal group" style="transition-delay:.09s;">
+        <div style="width:52px;height:52px;background:rgba(230,0,0,0.06);border:1px solid rgba(230,0,0,0.12);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;transition:background .3s;"><i class="fa-solid fa-phone" style="color:#E60000;font-size:1.2rem;"></i></div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:var(--text-main);margin-bottom:4px;">Telefone Fixo</h3>
+        <p style="color:var(--text-muted);font-size:.8125rem;margin-bottom:10px;">Comercial · Seg–Sex</p>
+        <span style="color:#E60000;font-weight:600;font-size:.875rem;">(31) 3017-4106</span>
+      </a>
+      <a href="mailto:tudoemincendio@gmail.com" class="contact-card reveal group" style="transition-delay:.18s;">
+        <div style="width:52px;height:52px;background:rgba(8,8,8,0.04);border:1px solid var(--border-card);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;transition:background .3s;"><i class="fa-solid fa-envelope" style="color:var(--text-muted);font-size:1.2rem;"></i></div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:var(--text-main);margin-bottom:4px;">E-mail</h3>
+        <p style="color:var(--text-muted);font-size:.8125rem;margin-bottom:10px;">Resposta em até 24h</p>
+        <span style="color:#E60000;font-weight:600;font-size:.8rem;word-break:break-all;">tudoemincendio@gmail.com</span>
+      </a>
     </div>
-
+    <div class="light-card reveal" style="padding:22px 26px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+      <div style="width:48px;height:48px;background:rgba(230,0,0,0.06);border:1px solid rgba(230,0,0,0.12);border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <i class="fa-solid fa-location-dot" style="color:#E60000;font-size:1.1rem;"></i>
+      </div>
+      <div style="flex:1;min-width:200px;">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:var(--text-main);margin-bottom:3px;">Nosso Endereço</h3>
+        <p style="color:var(--text-muted);font-size:.8125rem;">Rua Amélia Carneiro de Mendonça, 205 — Tupi, Belo Horizonte / MG — CEP 31844-040</p>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Rua+Am%C3%A9lia+Carneiro+de+Mendon%C3%A7a+205+Tupi+Belo+Horizonte+MG" target="_blank" rel="noopener" class="btn-fire" style="flex-shrink:0;padding:11px 20px;font-size:.8125rem;">
+        <i class="fa-solid fa-map-location-dot" style="font-size:.875rem;"></i> Ver no Mapa
+      </a>
+    </div>
   </div>
-</footer>
+</section>
+<style>
+  @media(min-width:640px){#contact-grid{grid-template-columns:repeat(3,1fr)!important;}}
+</style>
 
+<!-- ════════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
+<footer style="background:var(--footer-bg);padding-top:56px;padding-bottom:28px;">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div style="display:grid;grid-template-columns:1fr;gap:36px;margin-bottom:44px;" id="ftr-grid">
+      <!-- Sobre -->
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <div style="width:34px;height:34px;background:#E60000;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-fire-extinguisher" style="color:#fff;font-size:.9rem;"></i></div>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;color:#fff;letter-spacing:-.01em;">TUDO EM INCÊNDIO</p>
+        </div>
+        <div style="width:30px;height:2px;background:#E60000;border-radius:1px;margin-bottom:14px;"></div>
+        <p style="color:rgba(255,255,255,.3);font-size:.8125rem;line-height:1.75;margin-bottom:8px;"><span style="color:rgba(255,255,255,.5);font-weight:500;">Missão:</span> Prover soluções completas em segurança contra incêndios, garantindo a proteção e tranquilidade dos clientes.</p>
+        <p style="color:rgba(255,255,255,.3);font-size:.8125rem;line-height:1.75;"><span style="color:rgba(255,255,255,.5);font-weight:500;">Visão:</span> Ser líder em MG, destacando-se pela excelência, inovação e comprometimento com a segurança preventiva.</p>
+      </div>
+      <!-- Links -->
+      <div>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;color:#fff;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">Links Rápidos</h4>
+        <div style="width:30px;height:2px;background:#E60000;border-radius:1px;margin-bottom:14px;"></div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;">
+          <li><a href="#home"     class="ftr-lnk"><i class="fa-solid fa-chevron-right" style="color:#E60000;font-size:.6rem;"></i>Home</a></li>
+          <li><a href="#servicos" class="ftr-lnk"><i class="fa-solid fa-chevron-right" style="color:#E60000;font-size:.6rem;"></i>Serviços</a></li>
+          <li><a href="#sobre"    class="ftr-lnk"><i class="fa-solid fa-chevron-right" style="color:#E60000;font-size:.6rem;"></i>Sobre</a></li>
+          <li><a href="#produtos" class="ftr-lnk"><i class="fa-solid fa-chevron-right" style="color:#E60000;font-size:.6rem;"></i>Produtos</a></li>
+          <li><a href="#contato"  class="ftr-lnk"><i class="fa-solid fa-chevron-right" style="color:#E60000;font-size:.6rem;"></i>Contato</a></li>
+          <li><a href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento." target="_blank" rel="noopener" class="ftr-lnk"><i class="fa-solid fa-chevron-right" style="color:#E60000;font-size:.6rem;"></i>Orçamento</a></li>
+        </ul>
+      </div>
+      <!-- Contatos -->
+      <div>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;color:#fff;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">Contatos</h4>
+        <div style="width:30px;height:2px;background:#E60000;border-radius:1px;margin-bottom:14px;"></div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;">
+          <li><a href="https://wa.me/5531991353168" target="_blank" rel="noopener" class="ftr-lnk" style="align-items:flex-start;"><i class="fa-brands fa-whatsapp" style="color:#25D366;font-size:.95rem;flex-shrink:0;margin-top:1px;"></i><span>(31) 99135-3168<span style="display:block;color:rgba(255,255,255,.2);font-size:.7rem;margin-top:1px;">WhatsApp</span></span></a></li>
+          <li><a href="tel:+553130174106" class="ftr-lnk" style="align-items:flex-start;"><i class="fa-solid fa-phone" style="color:#E60000;font-size:.85rem;flex-shrink:0;margin-top:2px;"></i><span>(31) 3017-4106<span style="display:block;color:rgba(255,255,255,.2);font-size:.7rem;margin-top:1px;">Telefone Fixo</span></span></a></li>
+          <li><a href="mailto:tudoemincendio@gmail.com" class="ftr-lnk" style="align-items:flex-start;word-break:break-all;"><i class="fa-solid fa-envelope" style="color:#E60000;font-size:.85rem;flex-shrink:0;margin-top:2px;"></i>tudoemincendio@gmail.com</a></li>
+        </ul>
+      </div>
+      <!-- Local + Social -->
+      <div>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;color:#fff;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">Localização</h4>
+        <div style="width:30px;height:2px;background:#E60000;border-radius:1px;margin-bottom:14px;"></div>
+        <p style="color:rgba(255,255,255,.3);font-size:.8125rem;line-height:1.75;margin-bottom:20px;"><i class="fa-solid fa-location-dot" style="color:#E60000;margin-right:6px;font-size:.75rem;"></i>Rua Amélia Carneiro de Mendonça, 205<br>Tupi — Belo Horizonte / MG<br>CEP: 31844-040</p>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;">Redes Sociais</h4>
+        <div style="display:flex;gap:8px;">
+          <a href="https://www.instagram.com/tudoemincendio/" target="_blank" rel="noopener" aria-label="Instagram"
+             style="width:36px;height:36px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:9px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);text-decoration:none;transition:background .2s,color .2s;"
+             onmouseover="this.style.background='#E60000';this.style.color='#fff';"
+             onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.color='rgba(255,255,255,0.45)';">
+            <i class="fa-brands fa-instagram" style="font-size:.95rem;"></i>
+          </a>
+          <a href="https://wa.me/5531991353168" target="_blank" rel="noopener" aria-label="WhatsApp"
+             style="width:36px;height:36px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:9px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);text-decoration:none;transition:background .2s,color .2s;"
+             onmouseover="this.style.background='#25D366';this.style.color='#fff';"
+             onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.color='rgba(255,255,255,0.45)';">
+            <i class="fa-brands fa-whatsapp" style="font-size:.95rem;"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
+      <p style="color:rgba(255,255,255,.18);font-size:.75rem;">© 2025 Tudo em Incêndio · Todos os direitos reservados.</p>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span style="display:flex;align-items:center;gap:5px;color:rgba(255,255,255,.18);font-size:.7rem;"><i class="fa-solid fa-certificate" style="color:#C8A84B;font-size:.8rem;"></i>INMETRO</span>
+        <span style="display:flex;align-items:center;gap:5px;color:rgba(255,255,255,.18);font-size:.7rem;"><i class="fa-solid fa-award" style="color:#C8A84B;font-size:.8rem;"></i>CREA</span>
+        <span style="display:flex;align-items:center;gap:5px;color:rgba(255,255,255,.18);font-size:.7rem;"><i class="fa-solid fa-fire-flame-curved" style="color:#C8A84B;font-size:.8rem;"></i>CBMMG</span>
+      </div>
+    </div>
+  </div>
+</section>
+<style>@media(min-width:640px){#ftr-grid{grid-template-columns:repeat(2,1fr)!important;}}@media(min-width:1024px){#ftr-grid{grid-template-columns:repeat(4,1fr)!important;}}</style>
 
-<!-- ═══════════════════════════════════════
-     WhatsApp FAB
-═══════════════════════════════════════ -->
-<a id="wa-fab" href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+um+or%C3%A7amento."
-   target="_blank" rel="noopener" aria-label="WhatsApp">
-  <i class="fa-brands fa-whatsapp text-white text-3xl"></i>
+<!-- WA FAB -->
+<a id="wa-fab" href="https://wa.me/5531991353168?text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+um+or%C3%A7amento." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp" style="color:#fff;font-size:1.4rem;"></i>
 </a>
 
-
-<!-- ═══════════════════════════════════════
-     JAVASCRIPT
-═══════════════════════════════════════ -->
 <script>
-  /* ── Header scroll effect ── */
-  const header = document.getElementById('header');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 60);
-  }, { passive: true });
-
-  /* ── Mobile hamburger ── */
-  const hamburger  = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  hamburger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
-    const isOpen = mobileMenu.classList.contains('open');
-    hamburger.innerHTML = isOpen
-      ? '<i class="fa-solid fa-xmark text-ink text-xl"></i>'
-      : '<i class="fa-solid fa-bars text-ink text-xl"></i>';
+/* ── LOGO: força display correto ── */
+document.querySelectorAll('a[href="#home"] img').forEach(img => {
+  if (img.complete) {
+    if (img.naturalWidth === 0) {
+      img.style.display = 'none';
+      img.nextElementSibling.style.display = 'flex';
+    }
+  }
+  img.addEventListener('load', function() {
+    if (this.naturalWidth > 0) {
+      this.style.display = 'block';
+      if (this.nextElementSibling) this.nextElementSibling.style.display = 'none';
+    }
   });
-
-  /* Close menu on nav link click */
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      hamburger.innerHTML = '<i class="fa-solid fa-bars text-ink text-xl"></i>';
-    });
+  img.addEventListener('error', function() {
+    this.style.display = 'none';
+    if (this.nextElementSibling) this.nextElementSibling.style.display = 'flex';
   });
+});
 
-  /* ── Scroll reveal ── */
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer  = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+/* ── THEME TOGGLE ── */
+const html = document.documentElement;
+const btn  = document.getElementById('theme-toggle');
+const icon = document.getElementById('theme-icon');
+const saved = localStorage.getItem('tei-theme') || 'light';
+html.setAttribute('data-theme', saved);
+icon.className = saved === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+
+btn.addEventListener('click', () => {
+  const cur  = html.getAttribute('data-theme');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('tei-theme', next);
+  icon.className = next === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  // update mobile menu bg for dark mode
+  const mm = document.getElementById('mobile-menu');
+  mm.style.background = next === 'dark' ? 'rgba(13,13,15,0.98)' : 'rgba(7,7,10,0.97)';
+});
+
+/* ── HEADER SCROLL ── */
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  const past = window.scrollY > 70;
+  header.classList.toggle('hdr-light', past);
+  // update nav link colors
+  const theme = html.getAttribute('data-theme');
+  header.querySelectorAll('.nav-lnk').forEach(l => {
+    l.style.color = past
+      ? (theme === 'dark' ? 'rgba(240,240,242,0.65)' : 'rgba(8,8,8,0.65)')
+      : 'rgba(255,255,255,0.65)';
+  });
+}, { passive: true });
+
+/* ── HAMBURGER ── */
+const hbg = document.getElementById('hamburger');
+const mm  = document.getElementById('mobile-menu');
+hbg.addEventListener('click', () => {
+  mm.classList.toggle('open');
+  const open = mm.classList.contains('open');
+  hbg.innerHTML = open
+    ? '<i class="fa-solid fa-xmark" style="font-size:.95rem;"></i>'
+    : '<i class="fa-solid fa-bars" style="font-size:.95rem;"></i>';
+});
+mm.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    mm.classList.remove('open');
+    hbg.innerHTML = '<i class="fa-solid fa-bars" style="font-size:.95rem;"></i>';
+  });
+});
+
+/* ── SCROLL REVEAL ── */
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+/* ── ACTIVE NAV ── */
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+  document.querySelectorAll('.nav-lnk').forEach(l => {
+    const isActive = l.getAttribute('href') === '#' + cur;
+    if (isActive) l.style.color = '#E60000';
+    else l.style.color = '';
+  });
+}, { passive: true });
+
+/* ── ACCORDION ── */
+document.querySelectorAll('[data-acc]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body   = btn.nextElementSibling;
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    document.querySelectorAll('[data-acc]').forEach(b => {
+      b.setAttribute('aria-expanded', 'false');
+      b.nextElementSibling.classList.remove('open');
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-  revealEls.forEach(el => observer.observe(el));
-
-  /* ── Active nav link on scroll ── */
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100;
-      if (window.scrollY >= sectionTop) current = section.getAttribute('id');
-    });
-    navLinks.forEach(link => {
-      link.style.color = '';
-      if (link.getAttribute('href') === `#${current}`) {
-        link.style.color = '#E60000';
-      }
-    });
-  }, { passive: true });
+    if (!isOpen) { btn.setAttribute('aria-expanded', 'true'); body.classList.add('open'); }
+  });
+});
 </script>
-
 </body>
 </html>
