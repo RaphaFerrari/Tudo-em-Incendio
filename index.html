@@ -128,7 +128,7 @@
     .diagonal-cut{position:absolute;bottom:0;left:0;width:100%;height:72px;background:var(--bg-page);clip-path:polygon(0 100%,100% 0,100% 100%);}
 
     /* ══════════════════════════════
-       HEADER
+       HEADER E ÍCONES (CORREÇÃO)
     ══════════════════════════════ */
     #header{
       background:rgba(7,7,10,0.55);
@@ -160,22 +160,28 @@
     .logo-fallback .lf-text .l2{color:#E60000;}
     [data-theme="light"] .logo-fallback .lf-text .l1{color:#080808;}
 
-    /* ══════════════════════════════
-       THEME TOGGLE
-    ══════════════════════════════ */
-    #theme-toggle{
-      width:42px;height:42px;border-radius:50%;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.06);
-      display:flex;align-items:center;justify-content:center;
-      cursor:pointer;transition:background .25s,border-color .25s,transform .2s;
-      color:rgba(255,255,255,.7);font-size:.95rem;
+    /* NOVA REGRA: Ícones de Ação do Header */
+    .hdr-action-btn {
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.7);
+      transition: all .25s;
     }
-    #theme-toggle:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);transform:rotate(20deg);}
-    #header.hdr-light #theme-toggle{
-      border-color:rgba(0,0,0,.1);background:rgba(0,0,0,.04);color:rgba(8,8,8,.6);
+    .hdr-action-btn:hover {
+      background: rgba(255,255,255,.12);
+      border-color: rgba(255,255,255,.25);
+      color: #fff;
     }
-    #header.hdr-light #theme-toggle:hover{background:rgba(0,0,0,.08);}
+    /* Quando o fundo fica claro (Light Mode Scroll) */
+    #header.hdr-light .hdr-action-btn {
+      border-color: rgba(0,0,0,.1);
+      background: rgba(0,0,0,.04);
+      color: rgba(8,8,8,.6);
+    }
+    #header.hdr-light .hdr-action-btn:hover {
+      background: rgba(0,0,0,.08);
+      color: #080808;
+    }
 
     /* ══════════════════════════════
        MOBILE MENU
@@ -245,13 +251,14 @@
     .bento-card:hover .svc-icon{background:#E60000;border-color:#E60000;}
     .bento-card:hover .svc-icon i{color:#fff!important;}
 
-    /* num ghost */
+    /* NUM GHOST (CORREÇÃO OPACIDADE) */
     .num-ghost{
       position:absolute;top:14px;right:18px;
       font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3.8rem;
-      color:rgba(230,0,0,.07);line-height:1;letter-spacing:-.02em;user-select:none;
+      color:rgba(230,0,0,0.30); /* Mais visível no Light Mode */
+      line-height:1;letter-spacing:-.02em;user-select:none;
     }
-    [data-theme="dark"] .num-ghost{color:rgba(230,0,0,.12);}
+    [data-theme="dark"] .num-ghost{color:rgba(230,0,0,0.40);} /* Mais visível no Dark Mode */
 
     /* product card */
     .product-card{
@@ -400,11 +407,12 @@
     <a href="#home" class="flex items-center gap-3 flex-shrink-0" style="background:rgba(255,255,255,0.9); padding:6px 12px; border-radius:12px;">
       <img src="logo.png" alt="Tudo em Incêndio"
            style="height:36px;width:auto;display:block;"
+           onload="this.style.display='block';this.nextElementSibling.style.display='none';"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
       <div class="logo-fallback">
         <div class="lf-icon"><i class="fa-solid fa-fire-extinguisher text-white" style="font-size:1.1rem;"></i></div>
         <div class="lf-text">
-          <p class="l1" style="color:#080808;">TUDO EM</p>
+          <p class="l1">TUDO EM</p>
           <p class="l2">INCÊNDIO</p>
         </div>
       </div>
@@ -420,18 +428,16 @@
 
     <div class="flex items-center gap-2.5">
       <a href="https://www.instagram.com/tudoemincendio/" target="_blank" rel="noopener" aria-label="Instagram"
-         class="hidden sm:flex w-9 h-9 rounded-xl items-center justify-center text-white/60 hover:text-white transition-colors"
-         style="border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);">
+         class="hidden sm:flex w-9 h-9 rounded-xl items-center justify-center hdr-action-btn">
         <i class="fa-brands fa-instagram" style="font-size:1rem;"></i>
       </a>
-      <button id="theme-toggle" aria-label="Alternar tema">
+      <button id="theme-toggle" aria-label="Alternar tema" class="w-10 h-10 rounded-full flex items-center justify-center hdr-action-btn" style="border-radius: 50%;">
         <i class="fa-solid fa-moon" id="theme-icon"></i>
       </button>
       <a href="https://wa.me/5531991353168" target="_blank" rel="noopener" class="btn-fire hidden sm:inline-flex" style="padding:10px 18px;font-size:.8125rem;">
         <i class="fa-brands fa-whatsapp" style="font-size:.95rem;"></i> Falar Agora
       </a>
-      <button id="hamburger" class="md:hidden w-9 h-9 rounded-xl flex items-center justify-center text-white/70"
-              style="border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);" aria-label="Menu">
+      <button id="hamburger" class="md:hidden w-9 h-9 rounded-xl flex items-center justify-center hdr-action-btn" aria-label="Menu">
         <i class="fa-solid fa-bars" style="font-size:.95rem;"></i>
       </button>
     </div>
@@ -478,6 +484,20 @@
         <a href="#servicos" class="btn-ghost-light">
           <i class="fa-solid fa-shield-halved" style="font-size:.875rem;"></i> Nossos Serviços
         </a>
+      </div>
+      <div class="flex flex-wrap gap-2.5">
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;">
+          <i class="fa-solid fa-certificate" style="color:#C8A84B;font-size:.875rem;"></i>
+          <span style="color:rgba(255,255,255,.55);font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;">INMETRO</span>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;">
+          <i class="fa-solid fa-award" style="color:#C8A84B;font-size:.875rem;"></i>
+          <span style="color:rgba(255,255,255,.55);font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;">CREA</span>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;">
+          <i class="fa-solid fa-fire-flame-curved" style="color:#C8A84B;font-size:.875rem;"></i>
+          <span style="color:rgba(255,255,255,.55);font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;">CBMMG</span>
+        </div>
       </div>
     </div>
   </div>
